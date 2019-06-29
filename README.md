@@ -8,3 +8,5 @@ News gathering website made with django
 
 - To start a server
 - `python manage.py run`
+
+- `python manage.py createsuperuser`
