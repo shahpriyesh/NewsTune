@@ -12,4 +12,5 @@ def home(request):
 #        print(newsdata[c])
     healthnews = cnn.get_health_news()
     worldnews = cnn.get_world_news()
+    usanews = cnn.get_usa_news()
     return render(request, 'home.html', locals())

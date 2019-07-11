@@ -10,6 +10,7 @@ class CustomUser(AbstractUser):
     world = models.BooleanField(default=False)
     sports = models.BooleanField(default=False)
     health = models.BooleanField(default=False)
+    usa = models.BooleanField(default=False)
 
     def __str__(self):
         return self.email
