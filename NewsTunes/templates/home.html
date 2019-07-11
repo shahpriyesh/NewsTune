@@ -6,12 +6,128 @@
 {% block content %}
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
-
-	<p>
-	  These are news
-	  {{news}}
-	</p>
-{% else %}
-  <p>You are not logged in</p>
+  <ul class="nav nav-pills" role="tablist">
+   {% if user.business %}
+        <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#business">Business</a></li>
+    {% endif %}
+    {% if user.entertainment %}
+        <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#entertainment">Entertainment</a></li>
+    {% endif %}
+    {% if user.politics %}
+        <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#politics">Politics</a></li>
+    {% endif %}
+    {% if user.health %}
+        <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#health">Health</a></li>
+    {% endif %}
+    {% if user.world %}
+        <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#world">World</a></li>
+    {% endif %}
+  </ul>
+    <div class="tab-content">
+        <div id="business" class="container tab-pane fade">
+            <h3>Business</h3>
+                <div id="accordion">
+                    {% for n in newsdata.business%}
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="card-link" data-toggle="collapse" href="#collapse{{n.2}}">
+                                {{n.0}}
+                              </a>
+                            </div>
+                            <div id="collapse{{n.2}}" class="collapse" data-parent="#accordion">
+                              <div class="card-body">
+                                {{n.1}}
+                              </div>
+                              <a href="{{n.2}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a></button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+        </div>
+        <div id="entertainment" class="container tab-pane fade">
+            <h3>Entertainment</h3>
+                <div id="accordion">
+                    {% for n in newsdata.entertainment%}
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="card-link" data-toggle="collapse" href="#collapse{{n.2}}">
+                                {{n.0}}
+                              </a>
+                            </div>
+                            <div id="collapse{{n.2}}" class="collapse" data-parent="#accordion">
+                              <div class="card-body">
+                                {{n.1}}
+                              </div>
+                              <a href="{{n.2}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a></button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+        </div>
+        <div id="politics" class="container tab-pane fade">
+            <h3>Politics</h3>
+                <div id="accordion">
+                    {% for n in newsdata.politics%}
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="card-link" data-toggle="collapse" href="#collapse{{n.2}}">
+                                {{n.0}}
+                              </a>
+                            </div>
+                            <div id="collapse{{n.2}}" class="collapse" data-parent="#accordion">
+                              <div class="card-body">
+                                {{n.1}}
+                              </div>
+                              <a href="{{n.2}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a></button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+        </div>
+        <div id="health" class="container tab-pane fade">
+            <h3>Health</h3>
+                <div id="accordion">
+                    {% for news in healthnews %}
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="card-link" data-toggle="collapse" href="#collapse{{news.title}}">
+                                {{news.title}}
+                              </a>
+                            </div>
+                            <div id="collapse{{news.title}}" class="collapse" data-parent="#accordion">
+                              <div class="card-body">
+                                  {% for para in news.data %}
+                                    <p>{{para}}</p>
+                                  {% endfor %}
+                              </div>
+                              <a href="{{news.title}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a></button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+        </div>
+        <div id="world" class="container tab-pane fade">
+            <h3>World</h3>
+                <div id="accordion">
+                    {% for news in worldnews %}
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="card-link" data-toggle="collapse" href="#collapse{{news.title}}">
+                                {{news.title}}
+                              </a>
+                            </div>
+                            <div id="collapse{{news.title}}" class="collapse" data-parent="#accordion">
+                              <div class="card-body">
+                                  {% for para in news.data %}
+                                    <p>{{para}}</p>
+                                  {% endfor %}
+                              </div>
+                              <a href="{{news.title}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a></button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+        </div>
+    </div>
 {% endif %}
 {% endblock %}
