@@ -41,7 +41,27 @@
                               <div class="card-body">
                                 {{n.1}}
                               </div>
-                              <a href="{{n.2}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a></button>
+
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal0">See Article</button>
+
+                              <div class="modal fade modal0" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                  <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">{{n.0}}</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          {{n.1}}
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                      </div>
+                                </div>
+                              </div>
                             </div>
                         </div>
                     {% endfor %}
@@ -61,7 +81,7 @@
                               <div class="card-body">
                                 {{n.1}}
                               </div>
-                              <a href="{{n.2}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a></button>
+                              <a href="{{n.2}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -81,7 +101,7 @@
                               <div class="card-body">
                                 {{n.1}}
                               </div>
-                              <a href="{{n.2}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a></button>
+                              <a href="{{n.2}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -103,7 +123,7 @@
                                     <p>{{para}}</p>
                                   {% endfor %}
                               </div>
-                              <a href="{{news.title}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a></button>
+                              <a href="{{news.title}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -125,7 +145,7 @@
                                     <p>{{para}}</p>
                                   {% endfor %}
                               </div>
-                              <a href="{{news.title}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a></button>
+                              <a href="{{news.title}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -147,7 +167,7 @@
                                     <p>{{para}}</p>
                                   {% endfor %}
                               </div>
-                              <a href="{{news.title}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a></button>
+                              <a href="{{news.title}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a>
                             </div>
                         </div>
                     {% endfor %}
