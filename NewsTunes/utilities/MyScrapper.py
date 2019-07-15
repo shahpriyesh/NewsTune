@@ -79,7 +79,7 @@ class MyScrapper:
             info['title'] = title
 
             # Content
-            articleText = soup.find_all(class_='zn-body__paragraph speakable')
+            articleText = soup.find_all(class_='zn-body__paragraph')
             for paragraph in articleText:
                 text = paragraph.get_text()
                 news_paragraph_list.append(text)
@@ -127,11 +127,10 @@ class MyScrapper:
 
             # Content
             articlebody = soup.find(class_='l-container')
-            if articlebody == None:
-                articlebody = soup.find(class_='Article__body')
+            if articlebody is None:
                 articletext = soup.find_all(class_='Paragraph__component')
             else:
-                articletext = soup.find_all(class_='zn-body__paragraph speakable')
+                articletext = soup.find_all(class_='zn-body__paragraph')
 
             for paragraph in articletext:
                 text = paragraph.get_text()
@@ -167,7 +166,7 @@ class MyScrapper:
             if date is not None:
                 date = date.get_text()
                 date = date[8:]
-                info['date'] = date
+            info['date'] = date
 
             # Title
             title = soup.find(class_="pg-headline")
@@ -176,8 +175,7 @@ class MyScrapper:
                 info['title'] = title
 
             # Content
-            articlebody = soup.find(class_='l-container')
-            articletext = soup.find_all(class_='zn-body__paragraph speakable')
+            articletext = soup.find_all(class_='zn-body__paragraph')
             for paragraph in articletext:
                 text = paragraph.get_text()
                 news_paragraph_list.append(text)
@@ -188,3 +186,235 @@ class MyScrapper:
                 news.append(info)
 
         return news
+
+    def get_business_news(self):
+        # CNN Business news
+        page = requests.get('https://www.cnn.com/business')
+        soup = BeautifulSoup(page.content, 'html.parser')
+        urls = soup.find(class_='column zn__column--idx-0').find_all('article')
+
+        webpage_urls = []
+        news = []
+
+        for link in urls[2:8]:
+            url = link.contents[0].find_all('a')[0]
+            webpage_urls.append('https://www.cnn.com' + url.get('href'))
+
+        for link in webpage_urls:
+            info = {}
+            news_paragraph_list = []
+            url = link
+            webpage = requests.get(url)
+            soup = BeautifulSoup(webpage.text, 'html.parser')
+
+            # Date Time
+            date = soup.find(class_="update-time")
+            if date is not None:
+                date = date.get_text()
+                date = date[8:]
+            info['date'] = date
+
+            # Title
+            title = soup.find(class_="pg-headline")
+            if title is not None:
+                title = title.get_text()
+            info['title'] = title
+
+            # Content
+            articletext = soup.find_all(class_='zn-body__paragraph')
+            for paragraph in articletext:
+                text = paragraph.get_text()
+                news_paragraph_list.append(text)
+            if news_paragraph_list:
+                info['data'] = news_paragraph_list
+
+            if info:
+                news.append(info)
+
+        return news
+
+    def get_entertainment_news(self):
+        # CNN Entertainment news
+        page = requests.get('https://www.cnn.com/entertainment')
+        soup = BeautifulSoup(page.content, 'html.parser')
+        urls = soup.find(class_ = 'column zn__column--idx-2').find_all('article')
+
+        webpage_urls = []
+        news = []
+
+        for link in urls[:8]:
+            url = link.contents[0].find_all('a')[0]
+            webpage_urls.append('https://www.cnn.com' + url.get('href'))
+
+        for link in webpage_urls:
+            info = {}
+            news_paragraph_list = []
+            url = link
+            webpage = requests.get(url)
+            soup = BeautifulSoup(webpage.text, 'html.parser')
+
+            # Date Time
+            date = soup.find(class_="update-time")
+            if date is not None:
+                date = date.get_text()
+                date = date[8:]
+            info['date'] = date
+
+            # Title
+            title = soup.find(class_="pg-headline")
+            if title is not None:
+                title = title.get_text()
+            info['title'] = title
+
+            # Content
+            articletext = soup.find_all(class_='zn-body__paragraph')
+            for paragraph in articletext:
+                text = paragraph.get_text()
+                news_paragraph_list.append(text)
+            if news_paragraph_list:
+                info['data'] = news_paragraph_list
+
+            if info:
+                news.append(info)
+
+        return news
+
+    def get_style_news(self):
+        # CNN Entertainment news
+        page = requests.get('https://www.cnn.com/style')
+        soup = BeautifulSoup(page.content, 'html.parser')
+        layout = soup.find(class_='LayoutGrid__component')
+        urls = layout.findAll(class_='CardBasic__thumb')
+
+        webpage_urls = []
+        news = []
+
+        for link in urls[:8]:
+            url = link.find('a')
+            webpage_urls.append('https://www.cnn.com' + url.get('href'))
+
+        for link in webpage_urls:
+            info = {}
+            news_paragraph_list = []
+            url = link
+            webpage = requests.get(url)
+            soup = BeautifulSoup(webpage.text, 'html.parser')
+
+            # Date Time
+            date = soup.find(class_="update-time")
+            if date is not None:
+                date = date.get_text()
+                date = date[8:]
+            info['date'] = date
+
+            # Title
+            title = soup.find(class_="PageHead__title")
+            if title is not None:
+                title = title.get_text()
+            info['title'] = title
+
+            # Content
+            articletext = soup.find_all(class_='Paragraph__component BasicArticle__paragraph BasicArticle__pad')
+            for paragraph in articletext:
+                text = paragraph.get_text()
+                news_paragraph_list.append(text)
+            if news_paragraph_list:
+                info['data'] = news_paragraph_list
+
+            if info:
+                news.append(info)
+
+        return news
+
+    def get_travel_news(self):
+        # CNN Travel news
+        page = requests.get('https://www.cnn.com/travel')
+        soup = BeautifulSoup(page.content, 'html.parser')
+        layout = soup.find(class_='Homepage__primary')
+        urls = layout.findAll(class_='CardBasic__thumb')
+
+        webpage_urls = []
+        news = []
+
+        for link in urls:
+            url = link.find('a')
+            webpage_urls.append('https://www.cnn.com' + url.get('href'))
+
+        for link in webpage_urls:
+            info = {}
+            news_paragraph_list = []
+            url = link
+            webpage = requests.get(url)
+            soup = BeautifulSoup(webpage.text, 'html.parser')
+
+            # Date Time
+            date = soup.find(class_="Article__subtitle")
+            if date is not None:
+                date = date.get_text()
+            info['date'] = date
+
+            # Title
+            title = soup.find(class_="Article__title")
+            if title is not None:
+                title = title.get_text()
+            info['title'] = title
+
+            # Content
+            articletext = soup.find_all(class_='Paragraph__component')
+            for paragraph in articletext:
+                text = paragraph.get_text()
+                news_paragraph_list.append(text)
+            if news_paragraph_list:
+                info['data'] = news_paragraph_list
+
+            if info:
+                news.append(info)
+
+        return news
+
+    def get_sports_news():
+        # CNN Sports news
+        page = requests.get('https://bleacherreport.com/')
+        soup = BeautifulSoup(page.content, 'html.parser')
+        layout = soup.find(class_='organism contentStream featuredArticles')
+        urls = layout.findAll(class_='articleContent')
+
+        webpage_urls = []
+        news = []
+
+        for link in urls:
+            url = link.find('a')
+            webpage_urls.append(url.get('href'))
+
+        for link in webpage_urls:
+            info = {}
+            news_paragraph_list = []
+            url = link
+            webpage = requests.get(url)
+            soup = BeautifulSoup(webpage.text, 'html.parser')
+
+            # Date Time
+            date = soup.find(class_="date")
+            if date is not None:
+                date = date.get_text()
+            info['date'] = date
+
+            # Title
+            title = soup.find('h1')
+            if title is not None:
+                title = title.get_text()
+            info['title'] = title
+
+            # Content
+            articletext = soup.find_all('p')
+            for paragraph in articletext:
+                text = paragraph.get_text()
+                news_paragraph_list.append(text)
+            if news_paragraph_list:
+                info['data'] = news_paragraph_list
+
+            if info:
+                news.append(info)
+
+        return news
+
