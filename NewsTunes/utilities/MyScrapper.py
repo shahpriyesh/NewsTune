@@ -10,41 +10,6 @@ class MyScrapper:
     def __init__(self):
         pass
 
-    def get_news(self, category):
-        page_link = "https://www.cnn.com/" + category
-        page = requests.get(page_link, timeout=5)
-        my_pat = re.compile(r'\"articleList\"\:(.*?)]')
-        data = re.search(my_pat, str(page.content)).group(1)
-        uris = self.get_uris(data)
-        newsdata = self.get_news_data(uris)
-        return newsdata
-
-    def get_uris(self, data):
-        uri_pat = re.compile(r'uri\":\"(.*?)\"')
-        uris = re.findall(uri_pat, data)
-        return uris
-
-    def get_news_data(self, uris):
-        news = []
-        i = k = 0
-        while i < NUM_NEWS and k < len(uris):
-            try:
-                headline, newstext = self.scrape_news_from_uri(uris[k])
-                news.append([headline, newstext, "https://www.cnn.com" + uris[k]])
-                i += 1
-            except:
-                print("Could not get news for " + uris[k])
-            k += 1
-        return news
-
-    def scrape_news_from_uri(self, uri):
-        page_link = "https://www.cnn.com" + uri
-        data = requests.get(page_link, timeout=5)
-        soup = BeautifulSoup(data.text, 'html.parser')
-        newstext = soup.find('div', {"itemprop": "articleBody"}).get_text()
-        headline = soup.title.get_text()
-        return headline, newstext
-
     def get_health_news(self):
         # CNN Health news
         page = requests.get('https://www.cnn.com/health')
@@ -372,7 +337,7 @@ class MyScrapper:
 
         return news
 
-    def get_sports_news():
+    def get_sports_news(self):
         # CNN Sports news
         page = requests.get('https://bleacherreport.com/')
         soup = BeautifulSoup(page.content, 'html.parser')
