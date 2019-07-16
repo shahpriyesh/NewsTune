@@ -4,6 +4,18 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/Features-Boxed.css.css'%}">
+<link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">
+<link rel="stylesheet" href="{% static 'fonts/fontawesome-all.min.css' %}">
+<link rel="stylesheet" href="{% static 'fonts/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'fonts/fontawesome5-overrides.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/checkbox.css' %}">
+<link rel="stylesheet" href="{% static 'css/Login-Form-Clean.css' %}">
+<link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">
+<link rel="stylesheet" href="{% static 'css/Navigation-with-Search.css' %}">
+<link rel="stylesheet" href="{% static 'css/slider.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
   <ul class="nav nav-pills" role="tablist">
@@ -174,5 +186,54 @@
                 </div>
         </div>
     </div>
+{% else  %}
+<br><br>
+    <div class="card text-left">
+        <div class="card-body card-getstarted">
+            <h4 class="card-title">Tune your News!</h4>
+            <h6 class="text-muted card-subtitle mb-2">Organize all your news topics that matter to you.<br><br>All in one place.</h6><a href="{% url 'signup' %}"><button class="btn btn-primary nt-btn btn-getstarted" type="button">Get Started</button></a><a href="{% url 'login' %}"><button class="btn btn-primary nt-btn-trans btn-getstarted-login">Login</button></a></div>
+    </div>
+    <br><br>
+    <div class="features-boxed">
+        <div class="container">
+            <div class="intro">
+                <br>
+                <h3 class="text-center">Never miss important News!</h3>
+            </div>
+            <div class="row text-left justify-content-start features">
+                <div class="col-sm-6 col-md-5 col-lg-4 item ft-item">
+                    <div class="text-left border rounded box" style="width: 300px;"><i class="fas fa-book-open icon"></i>
+                        <h3 class="text-left name">Read</h3>
+                        <p class="text-left description">News Tunes offers a clean reading experience optimized for productivity</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="text-left border rounded box" style="width: 300px;"><i class="far fa-bookmark icon"></i>
+                        <h3 class="name">Bookmark</h3>
+                        <p class="description">Save articles and easily<br>get back to them <br>for future read</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="text-left border rounded box" style="width: 300px;"><i class="far fa-star icon"></i>
+                        <h3 class="name">Discover</h3>
+                        <p class="description">Discover on niche and<br>broad topics to mainstream new stories</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="text-left border rounded box" style="width: 300px;"><i class="fas fa-boxes icon"></i>
+                        <h3 class="name">Organize</h3>
+                        <p class="description">News Tunes helps you by<br>arranging the contents into easy-to-read feeds</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="text-left border rounded box" style="width: 300px;"><i class="fas fa-search icon"></i>
+                        <h3 class="name">Search</h3>
+                        <p class="description">Search for your favourite news or<br>any specific articles that <br>interests you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endif %}
 {% endblock %}
