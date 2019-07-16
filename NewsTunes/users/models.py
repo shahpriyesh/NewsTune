@@ -11,6 +11,8 @@ class CustomUser(AbstractUser):
     sports = models.BooleanField(default=False)
     health = models.BooleanField(default=False)
     usa = models.BooleanField(default=False)
+    style = models.BooleanField(default=False)
+    travel = models.BooleanField(default=False)
 
     def __str__(self):
         return self.email
