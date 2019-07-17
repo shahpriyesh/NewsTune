@@ -10,6 +10,15 @@ class MyScrapper:
     def __init__(self):
         pass
 
+    def print_news(self, news):
+        for n in news:
+            print("Date = ", n['date'])
+            print("Title = ", n['title'])
+            for idx in range(len(n['data'])):
+                print("Para-", idx, ") ", n['data'][idx])
+            print()
+            print()
+
     def get_health_news(self):
         # CNN Health news
         page = requests.get('https://www.cnn.com/health')
@@ -41,7 +50,10 @@ class MyScrapper:
             title = soup.find(class_="pg-headline")
             if title is not None:
                 title = title.get_text()
-            info['title'] = title
+                info['title'] = title
+            else:
+                # if title is not found, skip this news
+                continue
 
             # Content
             articleText = soup.find_all(class_='zn-body__paragraph')
@@ -83,12 +95,12 @@ class MyScrapper:
 
             # Title
             title = soup.find(class_="pg-headline")
-            if title is None:
-                title = soup.find(class_="Article__title")
+            if title is not None:
                 title = title.get_text()
+                info['title'] = title
             else:
-                title = title.get_text()
-            info['title'] = title
+                # if title is not found, skip this news
+                continue
 
             # Content
             articlebody = soup.find(class_='l-container')
@@ -138,6 +150,9 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+            else:
+                # if title is not found, skip this news
+                continue
 
             # Content
             articletext = soup.find_all(class_='zn-body__paragraph')
@@ -183,7 +198,10 @@ class MyScrapper:
             title = soup.find(class_="pg-headline")
             if title is not None:
                 title = title.get_text()
-            info['title'] = title
+                info['title'] = title
+            else:
+                # if title is not found, skip this news
+                continue
 
             # Content
             articletext = soup.find_all(class_='zn-body__paragraph')
@@ -229,7 +247,10 @@ class MyScrapper:
             title = soup.find(class_="pg-headline")
             if title is not None:
                 title = title.get_text()
-            info['title'] = title
+                info['title'] = title
+            else:
+                # if title is not found, skip this news
+                continue
 
             # Content
             articletext = soup.find_all(class_='zn-body__paragraph')
@@ -276,7 +297,10 @@ class MyScrapper:
             title = soup.find(class_="PageHead__title")
             if title is not None:
                 title = title.get_text()
-            info['title'] = title
+                info['title'] = title
+            else:
+                # if title is not found, skip this news
+                continue
 
             # Content
             articletext = soup.find_all(class_='Paragraph__component BasicArticle__paragraph BasicArticle__pad')
@@ -322,7 +346,10 @@ class MyScrapper:
             title = soup.find(class_="Article__title")
             if title is not None:
                 title = title.get_text()
-            info['title'] = title
+                info['title'] = title
+            else:
+                # if title is not found, skip this news
+                continue
 
             # Content
             articletext = soup.find_all(class_='Paragraph__component')
@@ -368,7 +395,10 @@ class MyScrapper:
             title = soup.find('h1')
             if title is not None:
                 title = title.get_text()
-            info['title'] = title
+                info['title'] = title
+            else:
+                # if title is not found, skip this news
+                continue
 
             # Content
             articletext = soup.find_all('p')
