@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from utilities import MyScrapper
+from users.models import News
 
 def home(request):
     if request.user.is_authenticated:
@@ -8,6 +9,14 @@ def home(request):
         if request.user.usa:
             print("Fetching USA News")
             usanews = cnn.get_usa_news()
+            for news in usanews:
+                News.objects.create(
+                    headline=news['title'],
+                    body="".join(news['data']),
+                    date=news['date'],
+                    author="XYZ",
+                    category="USA"
+                )
         if request.user.world:
             print("Fetching Wolrd News")
             worldnews = cnn.get_world_news()

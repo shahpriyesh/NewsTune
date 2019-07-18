@@ -16,3 +16,13 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+
+class News(models.Model):
+    headline = models.CharField(max_length=1000)
+    body = models.TextField()
+    date = models.TextField()
+    author = models.CharField(max_length=250)
+    category = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.headline
