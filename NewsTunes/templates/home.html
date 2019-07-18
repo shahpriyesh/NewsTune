@@ -5,7 +5,7 @@
 
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/Features-Boxed.css.css'%}">
+<link rel="stylesheet" href="{% static 'css/Features-Boxed.css'%}">
 <link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">
 <link rel="stylesheet" href="{% static 'fonts/fontawesome-all.min.css' %}">
 <link rel="stylesheet" href="{% static 'fonts/font-awesome.min.css' %}">
@@ -48,29 +48,45 @@
       {% endif %}
   </ul>
     <div class="tab-content">
-        <div id="usa" class="container tab-pane fade">
-            <h3>USA</h3>
-                <div id="accordion">
-                    {% for news in usanews %}
-                        <div class="card">
-                            <div class="card-header">
-                                <a class="card-link" data-toggle="collapse" href="#collapse{{news.title}}">
-                                {{news.title}}
-                              </a>
-                            </div>
-                            <div id="collapse{{news.title}}" class="collapse" data-parent="#accordion">
-                              <div class="card-body">
-                                    <p>{{ news.date }}</p>
-                                  {% for para in news.data %}
-                                    <p>{{para}}</p>
-                                  {% endfor %}
-                              </div>
-                              <a href="{{news.title}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a>
-                            </div>
-                        </div>
-                    {% endfor %}
+      <!-- START USA -->
+      <div id="usa" class="container tab-pane fade">
+          <h3>USA</h3>
+          {% for news in usanews %}
+            <div class="card">
+              <div class="card-header">
+                {{news.title}}
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{ news.date }}</h5>
+                <p class="card-text">
+                  {{news.data.0}}
+                </p>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#{{news.title}}">See Article</button>
+                <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                   <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                         <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                         </div>
+                         <div class="modal-body">
+                            {% for para in news.data %}
+                              {{para}}
+                            {% endfor %}
+                         </div>
+                         <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                         </div>
+                      </div>
+                   </div>
                 </div>
+              </div>
+            </div>
+          {% endfor %}
         </div>
+        <!-- END USA -->
         <div id="world" class="container tab-pane fade">
             <h3>World</h3>
                 <div id="accordion">
@@ -87,7 +103,7 @@
                                     <p>{{para}}</p>
                                   {% endfor %}
                               </div>
-                              <a href="{{news.title}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a>
+                              <a href="{{news.title}}" target="_blank" class="btn btn-success btn-lg active" role="button" aria-pressed="true">See Article</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -109,7 +125,7 @@
                                     <p>{{para}}</p>
                                   {% endfor %}
                               </div>
-                              <a href="{{news.title}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a>
+                              <a href="{{news.title}}" target="_blank" class="btn btn-success btn-lg active" role="button" aria-pressed="true">See Article</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -131,7 +147,7 @@
                                     <p>{{para}}</p>
                                   {% endfor %}
                               </div>
-                              <a href="{{news.title}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a>
+                              <a href="{{news.title}}" target="_blank" class="btn btn-success btn-lg active" role="button" aria-pressed="true">See Article</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -153,7 +169,7 @@
                                     <p>{{para}}</p>
                                   {% endfor %}
                               </div>
-                              <a href="{{news.title}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a>
+                              <a href="{{news.title}}" target="_blank" class="btn btn-success btn-lg active" role="button" aria-pressed="true">See Article</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -175,7 +191,7 @@
                                     <p>{{para}}</p>
                                   {% endfor %}
                               </div>
-                              <a href="{{news.title}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a>
+                              <a href="{{news.title}}" target="_blank" class="btn btn-success btn-lg active" role="button" aria-pressed="true">See Article</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -197,7 +213,7 @@
                                     <p>{{para}}</p>
                                   {% endfor %}
                               </div>
-                              <a href="{{news.title}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a>
+                              <a href="{{news.title}}" target="_blank" class="btn btn-success btn-lg active" role="button" aria-pressed="true">See Article</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -219,7 +235,7 @@
                                     <p>{{para}}</p>
                                   {% endfor %}
                               </div>
-                              <a href="{{news.title}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a>
+                              <a href="{{news.title}}" target="_blank" class="btn btn-success btn-lg active" role="button" aria-pressed="true">See Article</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -241,7 +257,7 @@
                                     <p>{{para}}</p>
                                   {% endfor %}
                               </div>
-                              <a href="{{news.title}}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Article</a>
+                              <a href="{{news.title}}" target="_blank" class="btn btn-success btn-lg active" role="button" aria-pressed="true">See Article</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -253,7 +269,7 @@
     <div class="card text-left">
         <div class="card-body card-getstarted">
             <h4 class="card-title">Tune your News!</h4>
-            <h6 class="text-muted card-subtitle mb-2">Organize all your news topics that matter to you.<br><br>All in one place.</h6><a href="{% url 'signup' %}"><button class="btn btn-primary nt-btn btn-getstarted" type="button">Get Started</button></a><a href="{% url 'login' %}"><button class="btn btn-primary nt-btn-trans btn-getstarted-login">Login</button></a></div>
+            <h6 class="text-muted card-subtitle mb-2">Organize all your news topics that matter to you.<br><br>All in one place.</h6><a href="{% url 'signup' %}"><button class="btn btn-success nt-btn btn-getstarted" type="button">Get Started</button></a><a href="{% url 'login' %}"><button class="btn btn-success nt-btn-trans btn-getstarted-login">Login</button></a></div>
     </div>
     <br><br>
     <div class="features-boxed">

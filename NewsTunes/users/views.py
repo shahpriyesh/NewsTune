@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, CustomUserChangeForm
+from django.shortcuts import redirect
 
 
 class SignUp(generic.CreateView):
@@ -19,6 +20,7 @@ def profile(request, template_name='profile.html'):
         form = CustomUserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
+        return redirect('home')
     else:
         form = CustomUserChangeForm(instance=request.user)
     return render(request, template_name, locals())
