@@ -413,3 +413,54 @@ class MyScrapper:
 
         return news
 
+    def get_opinion_news(self):
+        # CNN World news
+        webpage = requests.get('https://www.cnn.com/opinions')
+        soup = BeautifulSoup(webpage.content, 'html.parser')
+        urls = soup.find(class_='column zn').find_all('article')
+
+        webpage_urls = []
+        news = []
+
+        for link in urls[:8]:
+            url = link.contents[0].find_all('a')[0]
+            webpage_urls.append('https://www.cnn.com' + url.get('href'))
+
+        for link in webpage_urls:
+            info = {}
+            news_paragraph_list = []
+            url = link
+            page = requests.get(url)
+            soup = BeautifulSoup(page.text, 'html.parser')
+
+            # Date Time
+            date = soup.find(class_="update-time")
+            if date is not None:
+                date = date.get_text()
+                date = date[8:]
+            info['date'] = date
+
+            # Title
+            title = soup.find(class_="pg-headline")
+            if title is not None:
+                title = title.get_text()
+                info['title'] = title
+            else:
+                # if title is not found, skip this news
+                continue
+
+            # Content
+            articlebody = soup.find(class_='l-container')
+            if articlebody is None:
+                articletext = soup.find_all(class_='Paragraph__component')
+            else:
+                articletext = soup.find_all(class_=['zn-body_paragraph speakable', 'zn-body_paragraph'])
+
+            for paragraph in articletext:
+                text = paragraph.get_text()
+                news_paragraph_list.append(text)
+            info['data'] = news_paragraph_list
+
+            news.append(info)
+
+        return news
