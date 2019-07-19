@@ -145,6 +145,14 @@ class MyScrapper:
                 date = date[8:]
             info['date'] = date
 
+            # Author
+            author_list = []
+            '''author = soup.find(class_= "metadata__byline__author")
+            if author is not None:
+                author_list = author.findAll(a)
+                print(author_list)'''
+
+
             # Title
             title = soup.find(class_="pg-headline")
             if title is not None:

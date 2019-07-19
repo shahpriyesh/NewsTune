@@ -4,32 +4,31 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/Login-Form-Clean.css'%}">
-<link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">
-<div class="login-clean nt-body">
-  <form method="post">
-    {% csrf_token %}
-    <h5 class="text-center nt-login-head">Signup to News Tunes</h5>
-    {% for field in form %}
-      <p>
-      {% if field.label_tag == "Usa" %}
-        {{ field }}
-        {{ field.label_tag }}
-      {% else %}
-
-        {{ field.label_tag }}
-          {{ field }}
-      {% endif %}
-        {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
-    {% endfor %}
-    <div class="form-group"><button class="btn btn-block nt-btn" type="submit">Signup with News Tunes</button></div>
-  </form>
-</div>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/Login-Form-Clean.css'%}">
+    <link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">
+    <div class="login-clean nt-body">
+        <form method="post">
+            {% csrf_token %}
+            <h5 class="text-center nt-login-head">Signup to News Tunes</h5>
+            {% for field in form %}
+                <p>
+                    {% if field == "usa" %}
+                        {{ field }}
+                        {{ field.label_tag }}
+                    {% else %}
+                        {{ field.label_tag }}
+                        {{ field }}
+                    {% endif %}
+                    {% if field.help_text %}
+                        <small style="color: grey">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                </p>
+            {% endfor %}
+            <div class="form-group"><button class="btn btn-block nt-btn" type="submit">Signup with News Tunes</button></div>
+        </form>
+    </div>
 {% endblock %}
