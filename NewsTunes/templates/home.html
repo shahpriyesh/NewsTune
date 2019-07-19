@@ -57,12 +57,14 @@
                 {{news.title}}
               </div>
               <div class="card-body">
-                <h5 class="card-title">{{ news.date }}</h5>
+                <p class="card-title">{{ news.date }}</p>
                 <p class="card-text">
                   {{news.data.0}}
                 </p>
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#{{news.title}}">See Article</button>
-                <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <small>
+                  <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">See Article</a>
+                  <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                </small>{}
                    <div class="modal-dialog modal-lg">
                       <div class="modal-content">
                          <div class="modal-header">
@@ -85,6 +87,8 @@
               </div>
             </div>
           {% endfor %}
+        <br><br>
+        <a class="btn btn-success" href="https://www.cnn.com/us">See News</a>
         </div>
         <!-- END USA -->
         <div id="world" class="container tab-pane fade">

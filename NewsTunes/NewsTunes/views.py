@@ -6,6 +6,7 @@ from users.models import News
 def home(request):
     if request.user.is_authenticated:
         cnn = MyScrapper.MyScrapper()
+        News.objects.all().delete()
         if request.user.usa:
             print("Fetching USA News")
             usanews = cnn.get_usa_news()
