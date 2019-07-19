@@ -55,15 +55,18 @@
           {% for news in usanews %}
             <div class="card">
               <div class="card-header">
-                {{news.title}}
+                <h5>{{news.title}}</h5>
               </div>
               <div class="card-body">
-                <p class="card-title">{{ news.date }}</p>
+                <p class="card-title"> <h6> {{ news.date }} </h6> </p>
                 <p class="card-text">
                   {{news.data.0}}
                 </p>
+                <p class="card-text">
+                  {{news.data.1}}
+                </p>
                 <small>
-                  <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">See Article</a>
+                  <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
                   <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 </small>{}
                    <div class="modal-dialog modal-lg">
@@ -76,7 +79,7 @@
                          </div>
                          <div class="modal-body">
                             {% for para in news.data %}
-                              {{para}}
+                              <p>{{para}}</p>
                             {% endfor %}
                          </div>
                          <div class="modal-footer">
@@ -90,7 +93,7 @@
             <br>
           {% endfor %}
         <br><br>
-        <a class="btn btn-success" href="https://www.cnn.com/us">See News</a>
+        <a class="btn btn-success" href="https://www.cnn.com/us">Read more news on USA</a>
         </div>
         <!-- END USA -->
         <div id="world" class="container tab-pane fade">

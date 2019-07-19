@@ -165,6 +165,9 @@ class MyScrapper:
             if info:
                 news.append(info)
 
+            if len(news) >= 5:
+                break
+
         return news
 
     def get_business_news(self):
