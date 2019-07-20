@@ -17,34 +17,36 @@
 <link rel="stylesheet" href="{% static 'css/slider.css' %}">
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  <ul class="nav nav-pills" role="tablist">
+  <div class = "user-name">
+    Hi {{ user.username }} !
+  </div>
+  <ul class="nav nav-pills " role="tablist">
       {% if user.usa %}
-        <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#usa">USA</a></li>
+        <li class="nav-item "><a class="nav-link tabs-color tabs" data-toggle="pill" href="#usa">USA</a></li>
       {% endif %}
       {% if user.world %}
-        <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#world">World</a></li>
+        <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#world">World</a></li>
       {% endif %}
       {% if user.business %}
-        <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#business">Business</a></li>
+        <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#business">Business</a></li>
       {% endif %}
       {% if user.opinion %}
-        <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#opinion">Opinion</a></li>
+        <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#opinion">Opinion</a></li>
       {% endif %}
       {% if user.health %}
-        <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#health">Health</a></li>
+        <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#health">Health</a></li>
       {% endif %}
       {% if user.entertainment %}
-        <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#entertainment">Entertainment</a></li>
+        <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#entertainment">Entertainment</a></li>
       {% endif %}
       {% if user.style %}
-        <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#style">Style</a></li>
+        <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#style">Style</a></li>
       {% endif %}
       {% if user.travel %}
-        <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#travel">Travel</a></li>
+        <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#travel">Travel</a></li>
       {% endif %}
       {% if user.sports %}
-        <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#sports">Sports</a></li>
+        <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#sports">Sports</a></li>
       {% endif %}
   </ul>
   <br>
@@ -58,6 +60,7 @@
                 <h5>{{news.title}}</h5>
               </div>
               <div class="card-body">
+                <p class="card-title"> <h6> {{ news.date }} </h6> </p>
                 <p class="card-title"> <h6> {{ news.date }} </h6> </p>
                 <p class="card-text">
                   {{news.data.0}}

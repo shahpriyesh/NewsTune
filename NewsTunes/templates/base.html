@@ -15,22 +15,22 @@
 	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 	<title>{% block title %}News Tunes{% endblock %}</title>
 
-	<nav class="navbar navbar-light navbar-expand-md navigation-clean nav1">
-	  <a class="navbar-brand" href="#">NewsTunes</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
-	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	<nav class="navbar navbar-light navbar-expand-md navigation-clean nav1" style="background-color: #2C596A">
+	  
+	  <div class="container-fluid"><a class="navbar-brand" href="#"><img src="{% static 'img/logo1.jpeg'%}" width="50px"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+	
+	  
+	  <div class="collapse navbar-collapse header-right" id="navbarSupportedContent" >
 	    <ul class="navbar-nav mr-auto">
 	      <li class="nav-item">
-	        <a class="nav-link" href="{% url 'home' %}">Home</a>
+	        <a class="nav-link" href="{% url 'home' %}" style="color: white">Home</a>
 	      </li>
       	{% if user.is_authenticated %}
 	      <li class="nav-item">
-	        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+	        <a class="nav-link" href="{% url 'profile' %}" style="color: white">Profile</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+	        <a class="nav-link" href="{% url 'logout' %}" style="color: white">Logout</a>
 	      </li>
 		{% else %}
 	      <li class="nav-item">
@@ -45,7 +45,7 @@
 	  </div>
 	</nav>
 </head>
-<body>
+<body class = "bd-color">
 	<div class="container">
 		{% block content %}
 		{% endblock %}

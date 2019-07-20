@@ -37,4 +37,50 @@
   cursor: pointer;
 }
 
+/* Header */
+.header-right {
+  float: right;
+}
+
+
+/* user name */
+.user-name {
+  padding-top: 20px;
+}
+
+/* Body */
+.bd-color {
+  background-color: #f4faf5;
+}
+
+.tabs-color {
+  color:green;
+  font-weight:bold;
+}
+
+/* categories */
+a.tabs:hover, a.tabs:visited{
+  background-color: green;
+  color: white;
+  text-decoration: underline;
+}
+
+
+/* Footer */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

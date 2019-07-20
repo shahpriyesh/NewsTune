@@ -145,6 +145,7 @@ class MyScrapper:
                 date = date[8:]
             info['date'] = date
 
+
             # Title
             title = soup.find(class_="pg-headline")
             if title is not None:
@@ -455,6 +456,7 @@ class MyScrapper:
             # Content
             articlebody = soup.find(class_='l-container')
             if articlebody is None:
+                articlebody = soup.find(class_='Article__body')
                 articletext = soup.find_all(class_='Paragraph__component')
             else:
                 articletext = soup.find_all(class_=['zn-body_paragraph speakable', 'zn-body_paragraph'])
