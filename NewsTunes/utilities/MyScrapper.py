@@ -2,6 +2,7 @@ import requests
 import re
 import json
 from bs4 import BeautifulSoup
+import datetime
 
 NUM_NEWS = 5
 
@@ -18,105 +19,6 @@ class MyScrapper:
                 print("Para-", idx, ") ", n['data'][idx])
             print()
             print()
-
-    def get_health_news(self):
-        # CNN Health news
-        page = requests.get('https://www.cnn.com/health')
-        soup = BeautifulSoup(page.content, 'html.parser')
-        urls = soup.find(class_='column zn__column--idx-0').find_all('article')
-
-        webpage_urls = []
-        news = []
-
-        for link in urls[:4]:
-            url = link.contents[0].find_all('a')[0]
-            webpage_urls.append('https://www.cnn.com' + url.get('href'))
-
-        for link in webpage_urls:
-            info = {}
-            news_paragraph_list = []
-            url = link
-            page = requests.get(url)
-            soup = BeautifulSoup(page.text, 'html.parser')
-
-            # Date Time
-            date = soup.find(class_="update-time")
-            if date is not None:
-                date = date.get_text()
-                date = date[8:]
-            info['date'] = date
-
-            # Title
-            title = soup.find(class_="pg-headline")
-            if title is not None:
-                title = title.get_text()
-                info['title'] = title
-            else:
-                # if title is not found, skip this news
-                continue
-
-            # Content
-            articleText = soup.find_all(class_='zn-body__paragraph')
-            for paragraph in articleText:
-                text = paragraph.get_text()
-                news_paragraph_list.append(text)
-            info['data'] = news_paragraph_list
-
-            news.append(info)
-
-        return news
-
-    def get_world_news(self):
-        # CNN World news
-        webpage = requests.get('https://www.cnn.com/world')
-        soup = BeautifulSoup(webpage.content, 'html.parser')
-        urls = soup.find(class_='column zn').find_all('article')
-
-        webpage_urls = []
-        news = []
-
-        for link in urls[:8]:
-            url = link.contents[0].find_all('a')[0]
-            webpage_urls.append('https://www.cnn.com' + url.get('href'))
-
-        for link in webpage_urls:
-            info = {}
-            news_paragraph_list = []
-            url = link
-            page = requests.get(url)
-            soup = BeautifulSoup(page.text, 'html.parser')
-
-            # Date Time
-            date = soup.find(class_="update-time")
-            if date is not None:
-                date = date.get_text()
-                date = date[8:]
-            info['date'] = date
-
-            # Title
-            title = soup.find(class_="pg-headline")
-            if title is not None:
-                title = title.get_text()
-                info['title'] = title
-            else:
-                # if title is not found, skip this news
-                continue
-
-            # Content
-            articlebody = soup.find(class_='l-container')
-            if articlebody is None:
-                articletext = soup.find_all(class_='Paragraph__component')
-            else:
-                articletext = soup.find_all(class_='zn-body__paragraph')
-
-            for paragraph in articletext:
-                text = paragraph.get_text()
-                news_paragraph_list.append(text)
-            info['data'] = news_paragraph_list
-
-            news.append(info)
-
-        return news
 
     def get_usa_news(self):
         # CNN Business news
@@ -165,13 +67,70 @@ class MyScrapper:
             # Content
             articletext = soup.find_all(class_='zn-body__paragraph')
             for paragraph in articletext:
-                text = paragraph.get_text()
-                news_paragraph_list.append(text)
+                text = paragraph.get_text().strip()
+                if text != "":
+                    news_paragraph_list.append(text)
             if news_paragraph_list:
                 info['data'] = news_paragraph_list
 
             if info:
                 news.append(info)
+
+            if len(news) >= 5:
+                break
+
+        return news
+
+    def get_world_news(self):
+        # CNN World news
+        webpage = requests.get('https://www.cnn.com/world')
+        soup = BeautifulSoup(webpage.content, 'html.parser')
+        urls = soup.find(class_='column zn').find_all('article')
+
+        webpage_urls = []
+        news = []
+
+        for link in urls[:8]:
+            url = link.contents[0].find_all('a')[0]
+            webpage_urls.append('https://www.cnn.com' + url.get('href'))
+
+        for link in webpage_urls:
+            info = {}
+            news_paragraph_list = []
+            url = link
+            page = requests.get(url)
+            soup = BeautifulSoup(page.text, 'html.parser')
+
+            # Date Time
+            date = soup.find(class_="update-time")
+            if date is not None:
+                date = date.get_text()
+                date = date[8:]
+            info['date'] = date
+
+            # Title
+            title = soup.find(class_="pg-headline")
+            if title is not None:
+                title = title.get_text()
+                info['title'] = title
+            else:
+                # if title is not found, skip this news
+                continue
+
+            # Content
+            articlebody = soup.find(class_='l-container')
+            if articlebody is None:
+                articletext = soup.find_all(class_='Paragraph__component')
+            else:
+                articletext = soup.find_all(class_='zn-body__paragraph')
+
+            for paragraph in articletext:
+                text = paragraph.get_text().strip()
+                if text != "":
+                    news_paragraph_list.append(text)
+            info['data'] = news_paragraph_list
+
+            news.append(info)
 
             if len(news) >= 5:
                 break
@@ -217,13 +176,125 @@ class MyScrapper:
             # Content
             articletext = soup.find_all(class_='zn-body__paragraph')
             for paragraph in articletext:
-                text = paragraph.get_text()
-                news_paragraph_list.append(text)
+                text = paragraph.get_text().strip()
+                if text != "":
+                    news_paragraph_list.append(text)
             if news_paragraph_list:
                 info['data'] = news_paragraph_list
 
             if info:
                 news.append(info)
+
+            if len(news) >= 5:
+                break
+
+        return news
+
+    def get_opinion_news(self):
+        # CNN World news
+        webpage = requests.get('https://www.cnn.com/opinions')
+        soup = BeautifulSoup(webpage.content, 'html.parser')
+        urls = soup.find(class_='column zn').find_all('article')
+
+        webpage_urls = []
+        news = []
+
+        for link in urls[:8]:
+            url = link.contents[0].find_all('a')[0]
+            webpage_urls.append('https://www.cnn.com' + url.get('href'))
+
+        for link in webpage_urls:
+            info = {}
+            news_paragraph_list = []
+            url = link
+            page = requests.get(url)
+            soup = BeautifulSoup(page.text, 'html.parser')
+
+            # Date Time
+            date = soup.find(class_="update-time")
+            if date is not None:
+                date = date.get_text()
+                date = date[8:]
+            info['date'] = date
+
+            # Title
+            title = soup.find(class_="pg-headline")
+            if title is not None:
+                title = title.get_text()
+                info['title'] = title
+            else:
+                # if title is not found, skip this news
+                continue
+
+            # Content
+            articlebody = soup.find(class_='pg-rail-tall__body')
+            if articlebody is None:
+                text = paragraph.get_text().strip()
+                if text != "":
+                    news_paragraph_list.append(text)
+            else:
+                articletext = articlebody.find_all(class_='zn-body__paragraph')
+
+            for paragraph in articletext:
+                text = paragraph.get_text()
+                news_paragraph_list.append(text)
+            info['data'] = news_paragraph_list
+
+            news.append(info)
+
+            if len(news) >= 5:
+                break
+
+        return news
+
+    def get_health_news(self):
+        # CNN Health news
+        page = requests.get('https://www.cnn.com/health')
+        soup = BeautifulSoup(page.content, 'html.parser')
+        urls = soup.find(class_='column zn__column--idx-0').find_all('article')
+
+        webpage_urls = []
+        news = []
+
+        for link in urls[:4]:
+            url = link.contents[0].find_all('a')[0]
+            webpage_urls.append('https://www.cnn.com' + url.get('href'))
+
+        for link in webpage_urls:
+            info = {}
+            news_paragraph_list = []
+            url = link
+            page = requests.get(url)
+            soup = BeautifulSoup(page.text, 'html.parser')
+
+            # Date Time
+            date = soup.find(class_="update-time")
+            if date is not None:
+                date = date.get_text()
+                date = date[8:]
+            info['date'] = date
+
+            # Title
+            title = soup.find(class_="pg-headline")
+            if title is not None:
+                title = title.get_text()
+                info['title'] = title
+            else:
+                # if title is not found, skip this news
+                continue
+
+            # Content
+            articleText = soup.find_all(class_='zn-body__paragraph')
+            for paragraph in articleText:
+                text = paragraph.get_text().strip()
+                if text != "":
+                    news_paragraph_list.append(text)
+            info['data'] = news_paragraph_list
+
+            news.append(info)
+
+            if len(news) >= 5:
+                break
 
         return news
 
@@ -266,13 +337,17 @@ class MyScrapper:
             # Content
             articletext = soup.find_all(class_='zn-body__paragraph')
             for paragraph in articletext:
-                text = paragraph.get_text()
-                news_paragraph_list.append(text)
+                text = paragraph.get_text().strip()
+                if text != "":
+                    news_paragraph_list.append(text)
             if news_paragraph_list:
                 info['data'] = news_paragraph_list
 
             if info:
                 news.append(info)
+
+            if len(news) >= 5:
+                break
 
         return news
 
@@ -302,6 +377,10 @@ class MyScrapper:
             if date is not None:
                 date = date.get_text()
                 date = date[8:]
+            else:
+                date = datetime.datetime.now()
+                date = date.strftime("%I:%M %p PT, %a %B %d, %Y")
+                #1:30 PM ET, Sat July 20, 2019
             info['date'] = date
 
             # Title
@@ -316,13 +395,17 @@ class MyScrapper:
             # Content
             articletext = soup.find_all(class_='Paragraph__component BasicArticle__paragraph BasicArticle__pad')
             for paragraph in articletext:
-                text = paragraph.get_text()
-                news_paragraph_list.append(text)
+                text = paragraph.get_text().strip()
+                if text != "":
+                    news_paragraph_list.append(text)
             if news_paragraph_list:
                 info['data'] = news_paragraph_list
 
             if info:
                 news.append(info)
+
+            if len(news) >= 5:
+                break
 
         return news
 
@@ -365,13 +448,17 @@ class MyScrapper:
             # Content
             articletext = soup.find_all(class_='Paragraph__component')
             for paragraph in articletext:
-                text = paragraph.get_text()
-                news_paragraph_list.append(text)
+                text = paragraph.get_text().strip()
+                if text != "":
+                    news_paragraph_list.append(text)
             if news_paragraph_list:
                 info['data'] = news_paragraph_list
 
             if info:
                 news.append(info)
+
+            if len(news) >= 5:
+                break
 
         return news
 
@@ -414,64 +501,17 @@ class MyScrapper:
             # Content
             articletext = soup.find_all('p')
             for paragraph in articletext:
-                text = paragraph.get_text()
-                news_paragraph_list.append(text)
+                text = paragraph.get_text().strip()
+                if text != "":
+                    news_paragraph_list.append(text)
             if news_paragraph_list:
                 info['data'] = news_paragraph_list
 
             if info:
                 news.append(info)
 
-        return news
-
-    def get_opinion_news(self):
-        # CNN World news
-        webpage = requests.get('https://www.cnn.com/opinions')
-        soup = BeautifulSoup(webpage.content, 'html.parser')
-        urls = soup.find(class_='column zn').find_all('article')
-
-        webpage_urls = []
-        news = []
-
-        for link in urls[:8]:
-            url = link.contents[0].find_all('a')[0]
-            webpage_urls.append('https://www.cnn.com' + url.get('href'))
-
-        for link in webpage_urls:
-            info = {}
-            news_paragraph_list = []
-            url = link
-            page = requests.get(url)
-            soup = BeautifulSoup(page.text, 'html.parser')
-
-            # Date Time
-            date = soup.find(class_="update-time")
-            if date is not None:
-                date = date.get_text()
-                date = date[8:]
-            info['date'] = date
-
-            # Title
-            title = soup.find(class_="pg-headline")
-            if title is not None:
-                title = title.get_text()
-                info['title'] = title
-            else:
-                # if title is not found, skip this news
-                continue
-
-            # Content
-            articlebody = soup.find(class_='l-container')
-            if articlebody is None:
-                articletext = soup.find_all(class_='Paragraph__component')
-            else:
-                articletext = soup.find_all(class_=['zn-body_paragraph speakable', 'zn-body_paragraph'])
-
-            for paragraph in articletext:
-                text = paragraph.get_text()
-                news_paragraph_list.append(text)
-            info['data'] = news_paragraph_list
-
-            news.append(info)
+            if len(news) >= 5:
+                break
 
         return news
+

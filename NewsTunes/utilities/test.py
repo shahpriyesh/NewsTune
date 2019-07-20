@@ -3,18 +3,20 @@ import re
 import json
 from bs4 import BeautifulSoup
 
-def get_usa_news():
-    # CNN Business news
-    webpage = requests.get('https://www.cnn.com/us')
-    soup = BeautifulSoup(webpage.content, 'html.parser')
-    urls = soup.find(class_='column zn__column--idx-0').find_all('article')
+
+def get_sports_news():
+    # CNN Sports news
+    page = requests.get('https://bleacherreport.com/')
+    soup = BeautifulSoup(page.content, 'html.parser')
+    layout = soup.find(class_='organism contentStream featuredArticles')
+    urls = layout.findAll(class_='articleContent')
 
     webpage_urls = []
     news = []
 
-    for link in urls[:8]:
-        url = link.contents[0].find_all('a')[0]
-        webpage_urls.append('https://www.cnn.com' + url.get('href'))
+    for link in urls:
+        url = link.find('a')
+        webpage_urls.append(url.get('href'))
 
     for link in webpage_urls:
         info = {}
@@ -24,24 +26,13 @@ def get_usa_news():
         soup = BeautifulSoup(webpage.text, 'html.parser')
 
         # Date Time
-        date = soup.find(class_="update-time")
+        date = soup.find(class_="date")
         if date is not None:
             date = date.get_text()
-            date = date[8:]
         info['date'] = date
 
-        # Author
-        author_list = []
-        author_name = []
-        author_page = soup.find(class_="metadata__byline__author")
-        if author_page is not None:
-            author_list = author_page.findAll("a")
-            for item in author_list:
-                author_name.append(item.get_text())
-            print(author_name)
-
         # Title
-        title = soup.find(class_="pg-headline")
+        title = soup.find('h1')
         if title is not None:
             title = title.get_text()
             info['title'] = title
@@ -50,10 +41,11 @@ def get_usa_news():
             continue
 
         # Content
-        articletext = soup.find_all(class_='zn-body__paragraph')
+        articletext = soup.find_all('p')
         for paragraph in articletext:
-            text = paragraph.get_text()
-            news_paragraph_list.append(text)
+            text = paragraph.get_text().strip()
+            if text != "":
+                news_paragraph_list.append(text)
         if news_paragraph_list:
             info['data'] = news_paragraph_list
 
@@ -66,4 +58,15 @@ def get_usa_news():
     return news
 
 
-get_usa_news()
+def print_news(news):
+    for n in news:
+        print("Date = ", n['date'])
+        print("Title = ", n['title'])
+        for idx in range(len(n['data'])):
+            print("Para-", idx, ") ", n['data'][idx])
+        print()
+        print()
+
+
+news = get_sports_news()
+print_news(news)

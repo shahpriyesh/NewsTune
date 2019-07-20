@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{% static 'css/slider.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% if user.is_authenticated %}
-        Hi {{ user.username }}!
+        <h4> Hi {{ user.username }}! </h4>
         <ul class="nav nav-pills" role="tablist">
             {% if user.usa %}
                 <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#usa">USA</a></li>
@@ -50,7 +50,7 @@
         <br>
         <div class="tab-content">
             <!-- START USA -->
-            <div id="usa" class="container tab-pane fade">
+            <div id="usa" class="container tab-pane">
                 <h3>USA</h3>
                 {% for news in usanews %}
                     <div class="card">
@@ -59,7 +59,6 @@
                             <p class="card-title"> <h6> {{ news.date }} </h6> </p>
                         </div>
                         <div class="card-body">
-
                             <p class="card-text">
                                 {{news.data.0}}
                             </p>
@@ -93,187 +92,411 @@
                     </div>
                     <br>
                 {% endfor %}
-            <br><br>
-            <a class="btn btn-success" href="https://www.cnn.com/us">Read more news on USA</a>
+            <a class="btn btn-success" href="https://www.cnn.com/us" target="_blank">Read more news on USA</a>
         </div>
         <!-- END USA -->
-        <div id="world" class="container tab-pane fade">
-            <h3>World</h3>
-            <div id="accordion">
+
+
+
+
+        <!-- START WORLD -->
+         <div id="world" class="container tab-pane">
+                <h3>World</h3>
                 {% for news in worldnews %}
                     <div class="card">
                         <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#collapse{{news.title}}">
-                                {{news.title}}
-                            </a>
+                            <h5>{{news.title}}</h5>
+                            <p class="card-title"> <h6> {{ news.date }} </h6> </p>
                         </div>
-                        <div id="collapse{{news.title}}" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                {% for para in news.data %}
-                                    <p>{{para}}</p>
-                                {% endfor %}
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{news.data.0}}
+                            </p>
+                            <p class="card-text">
+                                {{news.data.1}}
+                            </p>
+                            <small>
+                                <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
+                                <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            </small>{}
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% for para in news.data %}
+                                            <p>{{para}}</p>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
-                            <a href="{{news.title}}" target="_blank" class="btn btn-success btn-lg active" role="button" aria-pressed="true">See Article</a>
                         </div>
                     </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div id="opinion" class="container tab-pane fade">
-            <h3>Opinion</h3>
-            <div id="accordion">
-                {% for news in opinionnews %}
-                    <div class="card">
-                        <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#collapse{{news.title}}">
-                                {{news.title}}
-                            </a>
-                        </div>
-                        <div id="collapse{{news.title}}" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                {% for para in news.data %}
-                                    <p>{{para}}</p>
-                                {% endfor %}
-                            </div>
-                            <a href="{{news.title}}" target="_blank" class="btn btn-success btn-lg active" role="button" aria-pressed="true">See Article</a>
-                        </div>
                     </div>
-                {% endfor %}
-            </div>
+                    <br>
+                    {% endfor %}
+                    <a class="btn btn-success" href="https://www.cnn.com/world" target="_blank">Read more news on World</a>
         </div>
-        <div id="business" class="container tab-pane fade">
-            <h3>Business</h3>
-            <div id="accordion">
+        <!-- END WORLD -->
+
+
+
+        <!-- START BUSINESS -->
+         <div id="business" class="container tab-pane">
+                <h3>Business</h3>
                 {% for news in businessnews %}
                     <div class="card">
                         <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#collapse{{news.title}}">
-                                {{news.title}}
-                            </a>
+                            <h5>{{news.title}}</h5>
+                            <p class="card-title"> <h6> {{ news.date }} </h6> </p>
                         </div>
-                        <div id="collapse{{news.title}}" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                {% for para in news.data %}
-                                    <p>{{para}}</p>
-                                {% endfor %}
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{news.data.0}}
+                            </p>
+                            <p class="card-text">
+                                {{news.data.1}}
+                            </p>
+                            <small>
+                                <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
+                                <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            </small>{}
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% for para in news.data %}
+                                            <p>{{para}}</p>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
-                            <a href="{{news.title}}" target="_blank" class="btn btn-success btn-lg active" role="button" aria-pressed="true">See Article</a>
                         </div>
                     </div>
+                    </div>
+                    <br>
                 {% endfor %}
-            </div>
+            <a class="btn btn-success" href="https://www.cnn.com/business" target="_blank">Read more news on Business</a>
         </div>
-        <div id="health" class="container tab-pane fade">
-            <h3>Health</h3>
-            <div id="accordion">
+        <!-- END BUSINESS -->
+
+
+
+         <!-- START OPINION -->
+         <div id="opinion" class="container tab-pane">
+                <h3>Opinion</h3>
+                {% for news in opinionnews %}
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>{{news.title}}</h5>
+                            <p class="card-title"> <h6> {{ news.date }} </h6> </p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{news.data.0}}
+                            </p>
+                            <p class="card-text">
+                                {{news.data.1}}
+                            </p>
+                            <small>
+                                <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
+                                <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            </small>{}
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% for para in news.data %}
+                                            <p>{{para}}</p>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <br>
+                {% endfor %}
+            <a class="btn btn-success" href="https://www.cnn.com/opinions" target="_blank">Read more news on Opinion</a>
+        </div>
+        <!-- END OPINION -->
+
+
+
+
+        <!-- START HEALTH -->
+         <div id="health" class="container tab-pane">
+                <h3>Health</h3>
                 {% for news in healthnews %}
                     <div class="card">
                         <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#collapse{{news.title}}">
-                                {{news.title}}
-                            </a>
+                            <h5>{{news.title}}</h5>
+                            <p class="card-title"> <h6> {{ news.date }} </h6> </p>
                         </div>
-                        <div id="collapse{{news.title}}" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                {% for para in news.data %}
-                                    <p>{{para}}</p>
-                                {% endfor %}
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{news.data.0}}
+                            </p>
+                            <p class="card-text">
+                                {{news.data.1}}
+                            </p>
+                            <small>
+                                <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
+                                <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            </small>{}
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% for para in news.data %}
+                                            <p>{{para}}</p>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
-                            <a href="{{news.title}}" target="_blank" class="btn btn-success btn-lg active" role="button" aria-pressed="true">See Article</a>
                         </div>
                     </div>
+                    </div>
+                    <br>
                 {% endfor %}
-            </div>
+            <a class="btn btn-success" href="https://www.cnn.com/health" target="_blank">Read more news on Health</a>
         </div>
-        <div id="entertainment" class="container tab-pane fade">
-            <h3>Entertainment</h3>
-            <div id="accordion">
+        <!-- END HEALTH -->
+
+
+
+        <!-- START ENTERTAINMENT -->
+         <div id="entertainment" class="container tab-pane">
+                <h3>Entertainment</h3>
                 {% for news in entertainmentnews %}
                     <div class="card">
                         <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#collapse{{news.title}}">
-                                {{news.title}}
-                            </a>
+                            <h5>{{news.title}}</h5>
+                            <p class="card-title"> <h6> {{ news.date }} </h6> </p>
                         </div>
-                        <div id="collapse{{news.title}}" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                {% for para in news.data %}
-                                    <p>{{para}}</p>
-                                {% endfor %}
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{news.data.0}}
+                            </p>
+                            <p class="card-text">
+                                {{news.data.1}}
+                            </p>
+                            <small>
+                                <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
+                                <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            </small>{}
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% for para in news.data %}
+                                            <p>{{para}}</p>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
-                            <a href="{{news.title}}" target="_blank" class="btn btn-success btn-lg active" role="button" aria-pressed="true">See Article</a>
                         </div>
                     </div>
+                    </div>
+                    <br>
                 {% endfor %}
-            </div>
+            <a class="btn btn-success" href="https://www.cnn.com/entertainment" target="_blank">Read more news on Entertainment</a>
         </div>
-        <div id="style" class="container tab-pane fade">
-            <h3>Style</h3>
-            <div id="accordion">
+        <!-- END ENTERTAINMENT -->
+
+
+
+
+      <!-- START STYLE -->
+         <div id="style" class="container tab-pane">
+                <h3>Style</h3>
                 {% for news in stylenews %}
                     <div class="card">
                         <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#collapse{{news.title}}">
-                                {{news.title}}
-                            </a>
+                            <h5>{{news.title}}</h5>
+                            <p class="card-title"> <h6> {{ news.date }} </h6> </p>
                         </div>
-                        <div id="collapse{{news.title}}" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                {% for para in news.data %}
-                                    <p>{{para}}</p>
-                                {% endfor %}
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{news.data.0}}
+                            </p>
+                            <p class="card-text">
+                                {{news.data.1}}
+                            </p>
+                            <small>
+                                <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
+                                <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            </small>{}
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% for para in news.data %}
+                                            <p>{{para}}</p>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
-                            <a href="{{news.title}}" target="_blank" class="btn btn-success btn-lg active" role="button" aria-pressed="true">See Article</a>
                         </div>
                     </div>
+                    </div>
+                    <br>
                 {% endfor %}
-            </div>
+            <a class="btn btn-success" href="https://www.cnn.com/style" target="_blank">Read more news on Style</a>
         </div>
-        <div id="travel" class="container tab-pane fade">
-            <h3>Travel</h3>
-            <div id="accordion">
+        <!-- END STYLE -->
+
+
+
+
+        <!-- START TRAVEL -->
+         <div id="travel" class="container tab-pane">
+                <h3>Travel</h3>
                 {% for news in travelnews %}
                     <div class="card">
                         <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#collapse{{news.title}}">
-                                {{news.title}}
-                            </a>
+                            <h5>{{news.title}}</h5>
+                            <p class="card-title"> <h6> {{ news.date }} </h6> </p>
                         </div>
-                        <div id="collapse{{news.title}}" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                {% for para in news.data %}
-                                    <p>{{para}}</p>
-                                {% endfor %}
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{news.data.0}}
+                            </p>
+                            <p class="card-text">
+                                {{news.data.1}}
+                            </p>
+                            <small>
+                                <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
+                                <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            </small>{}
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% for para in news.data %}
+                                            <p>{{para}}</p>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
-                            <a href="{{news.title}}" target="_blank" class="btn btn-success btn-lg active" role="button" aria-pressed="true">See Article</a>
                         </div>
                     </div>
+                    </div>
+                    <br>
                 {% endfor %}
-            </div>
+            <a class="btn btn-success" href="https://www.cnn.com/travel" target="_blank">Read more news on Travel</a>
         </div>
-        <div id="sports" class="container tab-pane fade">
-            <h3>Sports</h3>
-            <div id="accordion">
+        <!-- END TRAVEL -->
+
+
+
+         <!-- START SPORTS -->
+        <div id="sports" class="container tab-pane">
+                <h3>Sports</h3>
                 {% for news in sportsnews %}
                     <div class="card">
                         <div class="card-header">
-                            <a class="card-link" data-toggle="collapse" href="#collapse{{news.title}}">
-                                {{news.title}}
-                            </a>
+                            <h5>{{news.title}}</h5>
+                            <p class="card-title"> <h6> {{ news.date }} </h6> </p>
                         </div>
-                        <div id="collapse{{news.title}}" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                {% for para in news.data %}
-                                    <p>{{para}}</p>
-                                {% endfor %}
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{news.data.1}}
+                            </p>
+                            <p class="card-text">
+                                {{news.data.2}}
+                            </p>
+                            <small>
+                                <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
+                                <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            </small>{}
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% for para in news.data %}
+                                            <p>{{para}}</p>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
-                            <a href="{{news.title}}" target="_blank" class="btn btn-success btn-lg active" role="button" aria-pressed="true">See Article</a>
                         </div>
                     </div>
+                    </div>
+                    <br>
                 {% endfor %}
-            </div>
+            <a class="btn btn-success" href="https://bleacherreport.com/" target="_blank">Read more news on Sports</a>
         </div>
+
+        <!-- END SPORTS -->
+
+
         </div>
+
+
     {% else  %}
         <br><br>
         <div class="card text-left">
