@@ -4,11 +4,11 @@ import json
 from bs4 import BeautifulSoup
 
 
-def get_opinion_news():
-    # CNN World news
-    webpage = requests.get('https://www.cnn.com/opinions')
+def get_usa_news():
+    # CNN Business news
+    webpage = requests.get('https://www.cnn.com/us')
     soup = BeautifulSoup(webpage.content, 'html.parser')
-    urls = soup.find(class_='column zn').find_all('article')
+    urls = soup.find(class_='column zn__column--idx-0').find_all('article')
 
     webpage_urls = []
     news = []
@@ -21,8 +21,8 @@ def get_opinion_news():
         info = {}
         news_paragraph_list = []
         url = link
-        page = requests.get(url)
-        soup = BeautifulSoup(page.text, 'html.parser')
+        webpage = requests.get(url)
+        soup = BeautifulSoup(webpage.text, 'html.parser')
 
         # Date Time
         date = soup.find(class_="update-time")
@@ -31,29 +31,42 @@ def get_opinion_news():
             date = date[8:]
         info['date'] = date
 
+        # Author
+        author_list = []
+        '''author = soup.find(class_= "metadata__byline__author")
+        if author is not None:
+            author_list = author.findAll(a)
+            print(author_list)'''
+
+        # Author
+        author = soup.find(class_="metadata__byline__author")
+        if author is not None:
+            author = author.get_text()
+            author = author[:]
+            print(author)
+        info['author'] = author
+
         # Title
         title = soup.find(class_="pg-headline")
         if title is not None:
             title = title.get_text()
             info['title'] = title
+            print("Fetching -> ", title)
         else:
             # if title is not found, skip this news
             continue
 
         # Content
-        articlebody = soup.find(class_='l-container')
-        if articlebody is None:
-            articlebody = soup.find(class_='Article__body')
-            articletext = soup.find_all(class_='Paragraph__component')
-        else:
-            articletext = soup.find_all(class_=['zn-body__paragraph speakable', 'zn-body__paragraph'])
-
+        articletext = soup.find_all(class_='zn-body__paragraph')
         for paragraph in articletext:
-            text = paragraph.get_text()
-            news_paragraph_list.append(text)
-        info['data'] = news_paragraph_list
+            text = paragraph.get_text().strip()
+            if text != "":
+                news_paragraph_list.append(text)
+        if news_paragraph_list:
+            info['data'] = news_paragraph_list
 
-        news.append(info)
+        if info:
+            news.append(info)
 
         if len(news) >= 5:
             break
@@ -71,5 +84,5 @@ def print_news(news):
         print()
 
 
-news = get_opinion_news()
+news = get_usa_news()
 print_news(news)

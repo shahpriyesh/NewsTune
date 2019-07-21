@@ -47,13 +47,14 @@ class MyScrapper:
                 date = date[8:]
             info['date'] = date
 
-            # Author
-            author_list = []
-            '''author = soup.find(class_= "metadata__byline__author")
-            if author is not None:
-                author_list = author.findAll(a)
-                print(author_list)'''
 
+            # Author
+            author = soup.find(class_="metadata__byline__author")
+            if author is not None:
+                author = author.get_text()
+                author = author[:]
+                print(author)
+            info['author'] = author
 
             # Title
             title = soup.find(class_="pg-headline")
@@ -108,6 +109,14 @@ class MyScrapper:
                 date = date.get_text()
                 date = date[8:]
             info['date'] = date
+
+            # Author
+            author = soup.find(class_="metadata__byline__author")
+            if author is not None:
+                author = author.get_text()
+                author = author[:]
+                print(author)
+            info['author'] = author
 
             # Title
             title = soup.find(class_="pg-headline")
@@ -166,6 +175,14 @@ class MyScrapper:
                 date = date[8:]
             info['date'] = date
 
+            # Author
+            author = soup.find(class_="metadata__byline__author")
+            if author is not None:
+                author = author.get_text()
+                author = author[:]
+                print(author)
+            info['author'] = author
+
             # Title
             title = soup.find(class_="pg-headline")
             if title is not None:
@@ -219,6 +236,14 @@ class MyScrapper:
                 date = date.get_text()
                 date = date[8:]
             info['date'] = date
+
+            # Author
+            author = soup.find(class_="metadata__byline__author")
+            if author is not None:
+                author = author.get_text()
+                author = author[:]
+                print(author)
+            info['author'] = author
 
             # Title
             title = soup.find(class_="pg-headline")
@@ -278,6 +303,14 @@ class MyScrapper:
                 date = date[8:]
             info['date'] = date
 
+            # Author
+            author = soup.find(class_="metadata__byline__author")
+            if author is not None:
+                author = author.get_text()
+                author = author[:]
+                print(author)
+            info['author'] = author
+
             # Title
             title = soup.find(class_="pg-headline")
             if title is not None:
@@ -329,6 +362,14 @@ class MyScrapper:
                 date = date.get_text()
                 date = date[8:]
             info['date'] = date
+
+            # Author
+            author = soup.find(class_="metadata__byline__author")
+            if author is not None:
+                author = author.get_text()
+                author = author[:]
+                print(author)
+            info['author'] = author
 
             # Title
             title = soup.find(class_="pg-headline")
@@ -389,6 +430,14 @@ class MyScrapper:
                 #1:30 PM ET, Sat July 20, 2019
             info['date'] = date
 
+            # Author
+            author = soup.find(class_="Authors__writer")
+            if author is not None:
+                author = author.get_text()
+                author = author[:]
+                print(author)
+            info['author'] = author
+
             # Title
             title = soup.find(class_="PageHead__title")
             if title is not None:
@@ -442,6 +491,14 @@ class MyScrapper:
             if date is not None:
                 date = date.get_text()
             info['date'] = date
+
+            # Author
+            author = soup.find(class_="Article__subtitle")
+            if author is not None:
+                author = author.get_text()
+                author = author[:]
+                print(author)
+            info['author'] = author
 
             # Title
             title = soup.find(class_="Article__title")
@@ -497,6 +554,14 @@ class MyScrapper:
                 date = date.get_text()
             info['date'] = date
 
+            # Author
+            author = soup.find(class_="name")
+            if author is not None:
+                author = author.get_text()
+                author = author[:]
+                print(author)
+            info['author'] = author
+
             # Title
             title = soup.find('h1')
             if title is not None:
@@ -532,6 +597,7 @@ class MyScrapper:
 
             info['date'] = item.date
             info['title'] = item.headline
+            info['author'] = item.author
             news_paragraph_list = item.body.split("<PB>")
             info['data'] = news_paragraph_list
 
