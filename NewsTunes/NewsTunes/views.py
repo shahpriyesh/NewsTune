@@ -3,22 +3,33 @@ from django.shortcuts import render
 from utilities import MyScrapper
 from users.models import News
 
+UPDATE_TIME = 300
+
 def home(request):
     if request.user.is_authenticated:
         cnn = MyScrapper.MyScrapper()
-        News.objects.all().delete()
+        #News.objects.all().delete()
 
         if request.user.usa:
-            print("Fetching USA News")
-            usanews = cnn.get_usa_news()
-            for news in usanews:
-                News.objects.create(
-                    headline=news['title'],
-                    body="".join(news['data']),
-                    date=news['date'],
-                    author="XYZ",
-                    category="USA"
-                )
+            newsList = News.objects.filter(category="USA")
+            if newsList and newsList[0].get_time_diff() < UPDATE_TIME:
+                print("Fetching news from database")
+                usanews = cnn.convertFromDBToInfo(newsList)
+            else:
+                News.objects.filter(category="USA").delete()
+                print("Fetching USA News")
+                usanews = cnn.get_usa_news()
+                for news in usanews:
+                    wholeNews = ""
+                    for para in news['data']:
+                        wholeNews = wholeNews + para + "<PB>"
+                    entry = News.objects.create(
+                        headline=news['title'],
+                        body=wholeNews,
+                        date=news['date'],
+                        author="XYZ",
+                        category="USA"
+                    )
 
         if request.user.world:
             print("Fetching World News")

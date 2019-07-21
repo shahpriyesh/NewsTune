@@ -1,6 +1,8 @@
 # users/models.py
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from datetime import datetime
+from django.utils.timezone import utc
 
 
 class CustomUser(AbstractUser):
@@ -23,6 +25,13 @@ class News(models.Model):
     date = models.TextField()
     author = models.CharField(max_length=250)
     category = models.CharField(max_length=250)
+    posttime = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):
         return self.headline
+
+    def get_time_diff(self):
+        if self.posttime:
+            now = datetime.utcnow().replace(tzinfo=utc)
+            timediff = now - self.posttime
+            return timediff.total_seconds()

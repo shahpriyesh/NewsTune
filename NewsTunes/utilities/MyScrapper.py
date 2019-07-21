@@ -60,6 +60,7 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -113,6 +114,7 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -169,6 +171,7 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -222,6 +225,7 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -279,6 +283,7 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -330,6 +335,7 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -388,6 +394,7 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -441,6 +448,7 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -494,6 +502,7 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -514,4 +523,24 @@ class MyScrapper:
                 break
 
         return news
+
+    def convertFromDBToInfo(self, newsset):
+        news = []
+        for item in newsset:
+            info = {}
+            news_paragraph_list = []
+
+            info['date'] = item.date
+            info['title'] = item.headline
+            news_paragraph_list = item.body.split("<PB>")
+            info['data'] = news_paragraph_list
+
+            if info:
+                news.append(info)
+
+            if len(news) >= 5:
+                break
+
+        return news
+
 
