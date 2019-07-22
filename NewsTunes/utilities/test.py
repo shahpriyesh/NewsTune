@@ -4,19 +4,18 @@ import json
 from bs4 import BeautifulSoup
 
 
-def get_sports_news():
-    # CNN Sports news
-    page = requests.get('https://bleacherreport.com/')
-    soup = BeautifulSoup(page.content, 'html.parser')
-    layout = soup.find(class_='organism contentStream featuredArticles')
-    urls = layout.findAll(class_='articleContent')
+def get_usa_news():
+    # CNN Business news
+    webpage = requests.get('https://www.cnn.com/us')
+    soup = BeautifulSoup(webpage.content, 'html.parser')
+    urls = soup.find(class_='column zn__column--idx-0').find_all('article')
 
     webpage_urls = []
     news = []
 
-    for link in urls:
-        url = link.find('a')
-        webpage_urls.append(url.get('href'))
+    for link in urls[:8]:
+        url = link.contents[0].find_all('a')[0]
+        webpage_urls.append('https://www.cnn.com' + url.get('href'))
 
     for link in webpage_urls:
         info = {}
@@ -26,22 +25,39 @@ def get_sports_news():
         soup = BeautifulSoup(webpage.text, 'html.parser')
 
         # Date Time
-        date = soup.find(class_="date")
+        date = soup.find(class_="update-time")
         if date is not None:
             date = date.get_text()
+            date = date[8:]
         info['date'] = date
 
+        # Author
+        author_list = []
+        '''author = soup.find(class_= "metadata__byline__author")
+        if author is not None:
+            author_list = author.findAll(a)
+            print(author_list)'''
+
+        # Author
+        author = soup.find(class_="metadata__byline__author")
+        if author is not None:
+            author = author.get_text()
+            author = author[:]
+            print(author)
+        info['author'] = author
+
         # Title
-        title = soup.find('h1')
+        title = soup.find(class_="pg-headline")
         if title is not None:
             title = title.get_text()
             info['title'] = title
+            print("Fetching -> ", title)
         else:
             # if title is not found, skip this news
             continue
 
         # Content
-        articletext = soup.find_all('p')
+        articletext = soup.find_all(class_='zn-body__paragraph')
         for paragraph in articletext:
             text = paragraph.get_text().strip()
             if text != "":
@@ -68,5 +84,5 @@ def print_news(news):
         print()
 
 
-news = get_sports_news()
+news = get_usa_news()
 print_news(news)

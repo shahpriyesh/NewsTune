@@ -21,7 +21,7 @@ class MyScrapper:
             print()
 
     def get_usa_news(self):
-        # CNN Business news
+        # CNN USA news
         webpage = requests.get('https://www.cnn.com/us')
         soup = BeautifulSoup(webpage.content, 'html.parser')
         urls = soup.find(class_='column zn__column--idx-0').find_all('article')
@@ -47,13 +47,13 @@ class MyScrapper:
                 date = date[8:]
             info['date'] = date
 
-            # Author
-            author_list = []
-            '''author = soup.find(class_= "metadata__byline__author")
+             # Author
+            author = soup.find(class_="metadata__byline__author")
             if author is not None:
-                author_list = author.findAll(a)
-                print(author_list)'''
-
+                author = author.get_text()
+                author = author[:]
+                #print(author)
+            info['author'] = author
 
             # Title
             title = soup.find(class_="pg-headline")
@@ -108,6 +108,17 @@ class MyScrapper:
                 date = date[8:]
             info['date'] = date
 
+             # Author
+            author = soup.find(class_="metadata__byline__author")
+            if author is not None:
+                author = author.get_text()
+                author = author[:]
+                #print(author)
+            else:
+                # if title is not found, skip this news
+                continue
+            info['author'] = author
+
             # Title
             title = soup.find(class_="pg-headline")
             if title is not None:
@@ -130,8 +141,9 @@ class MyScrapper:
                     news_paragraph_list.append(text)
             info['data'] = news_paragraph_list
 
-            news.append(info)
-
+            if info:
+                news.append(info)
+                
             if len(news) >= 5:
                 break
 
@@ -164,6 +176,13 @@ class MyScrapper:
                 date = date[8:]
             info['date'] = date
 
+             # Author
+            author = soup.find(class_="metadata__byline__author")
+            if author is not None:
+                author = author.get_text()
+                author = author[:]
+                #print(author)
+            info['author'] = author
 
             # Title
             title = soup.find(class_="pg-headline")
@@ -218,11 +237,20 @@ class MyScrapper:
                 date = date[8:]
             info['date'] = date
 
+            # Author
+            author = soup.find(class_="metadata__byline__author")
+            if author is not None:
+                author = author.get_text()
+                author = author[:]
+                #print(author)
+            info['author'] = author
+
             # Title
             title = soup.find(class_="pg-headline")
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -245,7 +273,6 @@ class MyScrapper:
 
             if len(news) >= 5:
                 break
-
         return news
 
     def get_health_news(self):
@@ -274,6 +301,14 @@ class MyScrapper:
                 date = date.get_text()
                 date = date[8:]
             info['date'] = date
+
+             # Author
+            author = soup.find(class_="metadata__byline__author")
+            if author is not None:
+                author = author.get_text()
+                author = author[:]
+                #print(author)
+            info['author'] = author
 
             # Title
             title = soup.find(class_="pg-headline")
@@ -325,6 +360,14 @@ class MyScrapper:
                 date = date.get_text()
                 date = date[8:]
             info['date'] = date
+
+             # Author
+            author = soup.find(class_="metadata__byline__author")
+            if author is not None:
+                author = author.get_text()
+                author = author[:]
+                #print(author)
+            info['author'] = author
 
             # Title
             title = soup.find(class_="pg-headline")
@@ -384,6 +427,14 @@ class MyScrapper:
                 #1:30 PM ET, Sat July 20, 2019
             info['date'] = date
 
+             # Author
+            author = soup.find(class_="Authors__writer")
+            if author is not None:
+                author = author.get_text()
+                author = author[:]
+                #print(author)
+            info['author'] = author
+
             # Title
             title = soup.find(class_="PageHead__title")
             if title is not None:
@@ -436,6 +487,14 @@ class MyScrapper:
             if date is not None:
                 date = date.get_text()
             info['date'] = date
+
+             # Author
+            author = soup.find(class_="Article__subtitle")
+            if author is not None:
+                author = author.get_text()
+                author = author[:]
+                #print(author)
+            info['author'] = author
 
             # Title
             title = soup.find(class_="Article__title")
@@ -490,6 +549,14 @@ class MyScrapper:
                 date = date.get_text()
             info['date'] = date
 
+             # Author
+            author = soup.find(class_="name")
+            if author is not None:
+                author = author.get_text()
+                author = author[:]
+                #print(author)
+            info['author'] = author
+
             # Title
             title = soup.find('h1')
             if title is not None:
@@ -510,66 +577,24 @@ class MyScrapper:
 
             if info:
                 news.append(info)
-
-<<<<<<< HEAD
         return news
 
-    def get_opinion_news(self):
-        # CNN World news
-        webpage = requests.get('https://www.cnn.com/opinions')
-        soup = BeautifulSoup(webpage.content, 'html.parser')
-        urls = soup.find(class_='column zn').find_all('article')
-
-        webpage_urls = []
+    def convertFromDBToInfo(self, newsset):
         news = []
-
-        for link in urls[:8]:
-            url = link.contents[0].find_all('a')[0]
-            webpage_urls.append('https://www.cnn.com' + url.get('href'))
-
-        for link in webpage_urls:
+        for item in newsset:
             info = {}
             news_paragraph_list = []
-            url = link
-            page = requests.get(url)
-            soup = BeautifulSoup(page.text, 'html.parser')
 
-            # Date Time
-            date = soup.find(class_="update-time")
-            if date is not None:
-                date = date.get_text()
-                date = date[8:]
-            info['date'] = date
-
-            # Title
-            title = soup.find(class_="pg-headline")
-            if title is not None:
-                title = title.get_text()
-                info['title'] = title
-            else:
-                # if title is not found, skip this news
-                continue
-
-            # Content
-            articlebody = soup.find(class_='l-container')
-            if articlebody is None:
-                articlebody = soup.find(class_='Article__body')
-                articletext = soup.find_all(class_='Paragraph__component')
-            else:
-                articletext = soup.find_all(class_=['zn-body_paragraph speakable', 'zn-body_paragraph'])
-
-            for paragraph in articletext:
-                text = paragraph.get_text()
-                news_paragraph_list.append(text)
+            info['date'] = item.date
+            info['title'] = item.headline
+            info['author'] = item.author
+            news_paragraph_list = item.body.split("<PB>")
             info['data'] = news_paragraph_list
-=======
+
+            if info:
+                news.append(info)
+
             if len(news) >= 5:
                 break
->>>>>>> 4f96169b4aa47fa5dfed6b95cb2dffca94a71f1b
-
         return news
 
-<<<<<<< HEAD
-        return news
-=======
->>>>>>> 4f96169b4aa47fa5dfed6b95cb2dffca94a71f1b

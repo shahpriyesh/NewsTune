@@ -4,7 +4,47 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-  <h2>Profile</h2>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/Features-Boxed.css'%}">
+  <link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">
+  <link rel="stylesheet" href="{% static 'fonts/fontawesome-all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'fonts/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'fonts/fontawesome5-overrides.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/checkbox.css' %}">
+  <link rel="stylesheet" href="{% static 'css/Login-Form-Clean.css' %}">
+  <link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">
+  <link rel="stylesheet" href="{% static 'css/Navigation-with-Search.css' %}">
+  <link rel="stylesheet" href="{% static 'css/slider.css' %}">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+  
+  <div class="col dummy10"></div> 
+  <div class="login-clean ">
+    
+    <form method="POST">
+      <h5 class="text-center nt-login-head">Preferences</h5>
+      {% csrf_token %}
+      <div class="card">
+        <div class="card-body">
+          {% for field in form %}
+            
+              
+            {{ field.label_tag }} 
+            {{ field }} 
+            <br>          
+          {% endfor %}
+          <button class="btn pref-btn nt-btn" type="submit">Save</button>       
+        </div>
+      </div>
+    </form>
+  </div>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/slider.js"></script>
+  <script src="assets/js/slider1.js"></script>
+ 
+
+  <!--
   <form method="post">
     {% csrf_token %}
     {% for field in form %}
@@ -21,5 +61,20 @@
       </p>
     {% endfor %}
     <button type="submit">Save</button>
-  </form>
+  </form> 
+
+<div class="form-row nt-grid-image-cont">
+                <div class="col nt-grid-image edu">
+                    <div class="round"><input type="checkbox" id="checkbox"><label for="checkbox"></label></div>
+                    <label class="text-left nt-grid-lab">
+                      {{ field }}
+                      {{ field.label_tag }}
+                    </label>
+                </div>
+            </div>
+
+
+
+
+-->
 {% endblock %}

@@ -5,9 +5,21 @@
 
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/Login-Form-Clean.css'%}">
+<link rel="stylesheet" href="{% static 'css/Features-Boxed.css'%}">
 <link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">
-<div class="login-clean nt-body">
+<link rel="stylesheet" href="{% static 'fonts/fontawesome-all.min.css' %}">
+<link rel="stylesheet" href="{% static 'fonts/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'fonts/fontawesome5-overrides.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/checkbox.css' %}">
+<link rel="stylesheet" href="{% static 'css/Login-Form-Clean.css' %}">
+<link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">
+<link rel="stylesheet" href="{% static 'css/Navigation-with-Search.css' %}">
+<link rel="stylesheet" href="{% static 'css/slider.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+<div class="col dummy10"></div> 
+<div class="col dummy10"></div> 
+<div class="login-clean bd-form">
   <form method="post">
     {% csrf_token %}
     <h5 class="text-center nt-login-head">Login to News Tunes</h5>

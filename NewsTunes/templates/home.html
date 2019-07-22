@@ -4,101 +4,6 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<<<<<<< HEAD
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/Features-Boxed.css'%}">
-<link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">
-<link rel="stylesheet" href="{% static 'fonts/fontawesome-all.min.css' %}">
-<link rel="stylesheet" href="{% static 'fonts/font-awesome.min.css' %}">
-<link rel="stylesheet" href="{% static 'fonts/fontawesome5-overrides.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/checkbox.css' %}">
-<link rel="stylesheet" href="{% static 'css/Login-Form-Clean.css' %}">
-<link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">
-<link rel="stylesheet" href="{% static 'css/Navigation-with-Search.css' %}">
-<link rel="stylesheet" href="{% static 'css/slider.css' %}">
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
-{% if user.is_authenticated %}
-  <div class = "user-name">
-    Hi {{ user.username }} !
-  </div>
-  <ul class="nav nav-pills " role="tablist">
-      {% if user.usa %}
-        <li class="nav-item "><a class="nav-link tabs-color tabs" data-toggle="pill" href="#usa">USA</a></li>
-      {% endif %}
-      {% if user.world %}
-        <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#world">World</a></li>
-      {% endif %}
-      {% if user.business %}
-        <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#business">Business</a></li>
-      {% endif %}
-      {% if user.opinion %}
-        <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#opinion">Opinion</a></li>
-      {% endif %}
-      {% if user.health %}
-        <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#health">Health</a></li>
-      {% endif %}
-      {% if user.entertainment %}
-        <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#entertainment">Entertainment</a></li>
-      {% endif %}
-      {% if user.style %}
-        <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#style">Style</a></li>
-      {% endif %}
-      {% if user.travel %}
-        <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#travel">Travel</a></li>
-      {% endif %}
-      {% if user.sports %}
-        <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#sports">Sports</a></li>
-      {% endif %}
-  </ul>
-  <br>
-    <div class="tab-content">
-      <!-- START USA -->
-      <div id="usa" class="container tab-pane fade">
-          <h3>USA</h3>
-          {% for news in usanews %}
-            <div class="card">
-              <div class="card-header">
-                <h5>{{news.title}}</h5>
-              </div>
-              <div class="card-body">
-                <p class="card-title"> <h6> {{ news.date }} </h6> </p>
-                <p class="card-title"> <h6> {{ news.date }} </h6> </p>
-                <p class="card-text">
-                  {{news.data.0}}
-                </p>
-                <p class="card-text">
-                  {{news.data.1}}
-                </p>
-                <small>
-                  <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
-                  <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                </small>{}
-                   <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                         </div>
-                         <div class="modal-body">
-                            {% for para in news.data %}
-                              <p>{{para}}</p>
-                            {% endfor %}
-                         </div>
-                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-              </div>
-            </div>
-            <br>
-          {% endfor %}
-        <br><br>
-        <a class="btn btn-success" href="https://www.cnn.com/us">Read more news on USA</a>
-=======
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/Features-Boxed.css'%}">
     <link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">
@@ -112,73 +17,77 @@
     <link rel="stylesheet" href="{% static 'css/slider.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% if user.is_authenticated %}
-        <h4> Hi {{ user.username }}! </h4>
-        <ul class="nav nav-pills" role="tablist">
+        <div class="user-name">
+            Hi {{ user.username }} !
+        </div>
+        <ul class="nav nav-pills nav-tab" role="tablist">
             {% if user.usa %}
-                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#usa">USA</a></li>
+                <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#usa">USA</a></li>
             {% endif %}
             {% if user.world %}
-                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#world">World</a></li>
+                <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#world">World</a></li>
             {% endif %}
             {% if user.business %}
-                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#business">Business</a></li>
+                <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#business">Business</a></li>
             {% endif %}
             {% if user.opinion %}
-                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#opinion">Opinion</a></li>
+                <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#opinion">Opinion</a></li>
             {% endif %}
             {% if user.health %}
-                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#health">Health</a></li>
+                <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#health">Health</a></li>
             {% endif %}
             {% if user.entertainment %}
-                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#entertainment">Entertainment</a></li>
+                <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#entertainment">Entertainment</a></li>
             {% endif %}
             {% if user.style %}
-                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#style">Style</a></li>
+                <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#style">Style</a></li>
             {% endif %}
             {% if user.travel %}
-                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#travel">Travel</a></li>
+                <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#travel">Travel</a></li>
             {% endif %}
             {% if user.sports %}
-                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#sports">Sports</a></li>
+                <li class="nav-item"><a class="nav-link tabs-color tabs" data-toggle="pill" href="#sports">Sports</a></li>
             {% endif %}
         </ul>
         <br>
         <div class="tab-content">
             <!-- START USA -->
             <div id="usa" class="container tab-pane">
-                <h3>USA</h3>
+                <!-- <h3>USA</h3> -->
                 {% for news in usanews %}
                     <div class="card">
                         <div class="card-header">
-                            <h5>{{news.title}}</h5>
-                            <p class="card-title"> <h6> {{ news.date }} </h6> </p>
+                            <h5 class="cat-tit">{{news.title}}</h5>
+                            <p class="card-title ti-date">
+                                {{ news.author }} {{ " Updated at " }} {{ news.date }}
+                            </p>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.0}}
                             </p>
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.1}}
                             </p>
                             <small>
-                                <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
+                                <a  class="btn-readmore btn" href="#"  data-toggle="modal" data-target="#{{news.title}}">Read More...</a>
                                 <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             </small>{}
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                                        <h5 class="modal-title cat-tit" id="exampleModalLabel">{{news.title}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         {% for para in news.data %}
-                                            <p>{{para}}</p>
+                                            <p class="cat-content">{{para}}</p>
                                         {% endfor %}
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
@@ -187,8 +96,7 @@
                     </div>
                     <br>
                 {% endfor %}
-            <a class="btn btn-success" href="https://www.cnn.com/us" target="_blank">Read more news on USA</a>
->>>>>>> 4f96169b4aa47fa5dfed6b95cb2dffca94a71f1b
+            <a class="btn btn-success nt-btn" href="https://www.cnn.com/us" target="_blank">Read more USA news on CNN</a>
         </div>
         <!-- END USA -->
 
@@ -197,39 +105,41 @@
 
         <!-- START WORLD -->
          <div id="world" class="container tab-pane">
-                <h3>World</h3>
+                <!-- <h3>World</h3> -->
                 {% for news in worldnews %}
                     <div class="card">
                         <div class="card-header">
-                            <h5>{{news.title}}</h5>
-                            <p class="card-title"> <h6> {{ news.date }} </h6> </p>
+                            <h5 class="cat-tit">{{news.title}}</h5>
+                            <p class="card-title ti-date">
+                                {{ news.author }} {{ " Updated at " }} {{ news.date }}
+                            </p>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.0}}
                             </p>
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.1}}
                             </p>
                             <small>
-                                <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
+                                <a class="btn-readmore btn" href="#" data-toggle="modal" data-target="#{{news.title}}">Read More...</a>
                                 <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             </small>{}
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                                        <h5 class="modal-title cat-tit" id="exampleModalLabel">{{news.title}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         {% for para in news.data %}
-                                            <p>{{para}}</p>
+                                            <p class="cat-content">{{para}}</p>
                                         {% endfor %}
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
@@ -238,7 +148,7 @@
                     </div>
                     <br>
                     {% endfor %}
-                    <a class="btn btn-success" href="https://www.cnn.com/world" target="_blank">Read more news on World</a>
+                    <a class="btn btn-success nt-btn" href="https://www.cnn.com/world" target="_blank">Read more World news on CNN</a>
         </div>
         <!-- END WORLD -->
 
@@ -246,39 +156,41 @@
 
         <!-- START BUSINESS -->
          <div id="business" class="container tab-pane">
-                <h3>Business</h3>
+                <!-- <h3>Business</h3> -->
                 {% for news in businessnews %}
                     <div class="card">
                         <div class="card-header">
-                            <h5>{{news.title}}</h5>
-                            <p class="card-title"> <h6> {{ news.date }} </h6> </p>
+                            <h5 class="cat-tit">{{news.title}}</h5>
+                            <p class="card-title ti-date">
+                                {{ news.author }} {{ " Updated at " }} {{ news.date }}
+                            </p>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.0}}
                             </p>
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.1}}
                             </p>
                             <small>
-                                <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
+                                <a class="btn-readmore btn" href="#" data-toggle="modal" data-target="#{{news.title}}">Read More...</a>
                                 <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             </small>{}
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                                        <h5 class="modal-title cat-tit" id="exampleModalLabel">{{news.title}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         {% for para in news.data %}
-                                            <p>{{para}}</p>
+                                            <p class="cat-content">{{para}}</p>
                                         {% endfor %}
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
@@ -287,7 +199,7 @@
                     </div>
                     <br>
                 {% endfor %}
-            <a class="btn btn-success" href="https://www.cnn.com/business" target="_blank">Read more news on Business</a>
+            <a class="btn btn-success nt-btn" href="https://www.cnn.com/business" target="_blank">Read more Business news on CNN</a>
         </div>
         <!-- END BUSINESS -->
 
@@ -295,39 +207,41 @@
 
          <!-- START OPINION -->
          <div id="opinion" class="container tab-pane">
-                <h3>Opinion</h3>
+                <!-- <h3>Opinion</h3> -->
                 {% for news in opinionnews %}
                     <div class="card">
                         <div class="card-header">
-                            <h5>{{news.title}}</h5>
-                            <p class="card-title"> <h6> {{ news.date }} </h6> </p>
+                            <h5 class="cat-tit">{{news.title}}</h5>
+                            <p class="card-title ti-date">
+                                {{ news.author }} {{ " Updated at " }} {{ news.date }}
+                            </p>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.0}}
                             </p>
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.1}}
                             </p>
                             <small>
-                                <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
+                                <a class="btn-readmore btn" href="#" data-toggle="modal" data-target="#{{news.title}}">Read More...</a>
                                 <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             </small>{}
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                                        <h5 class="modal-title cat-tit" id="exampleModalLabel">{{news.title}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         {% for para in news.data %}
-                                            <p>{{para}}</p>
+                                            <p class="cat-content">{{para}}</p>
                                         {% endfor %}
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
@@ -336,7 +250,7 @@
                     </div>
                     <br>
                 {% endfor %}
-            <a class="btn btn-success" href="https://www.cnn.com/opinions" target="_blank">Read more news on Opinion</a>
+            <a class="btn btn-success nt-btn" href="https://www.cnn.com/opinions" target="_blank">Read more Opinion news on CNN</a>
         </div>
         <!-- END OPINION -->
 
@@ -345,39 +259,41 @@
 
         <!-- START HEALTH -->
          <div id="health" class="container tab-pane">
-                <h3>Health</h3>
+                <!-- <h3>Health</h3> -->
                 {% for news in healthnews %}
                     <div class="card">
                         <div class="card-header">
-                            <h5>{{news.title}}</h5>
-                            <p class="card-title"> <h6> {{ news.date }} </h6> </p>
+                            <h5 class="cat-tit">{{news.title}}</h5>
+                            <p class="card-title ti-date">
+                                {{ news.author }} {{ " Updated at " }} {{ news.date }}
+                            </p>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.0}}
                             </p>
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.1}}
                             </p>
                             <small>
-                                <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
+                                <a class="btn-readmore btn" href="#" data-toggle="modal" data-target="#{{news.title}}">Read More...</a>
                                 <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             </small>{}
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                                        <h5 class="modal-title cat-tit" id="exampleModalLabel">{{news.title}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         {% for para in news.data %}
-                                            <p>{{para}}</p>
+                                            <p class="cat-content">{{para}}</p>
                                         {% endfor %}
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
@@ -386,7 +302,7 @@
                     </div>
                     <br>
                 {% endfor %}
-            <a class="btn btn-success" href="https://www.cnn.com/health" target="_blank">Read more news on Health</a>
+            <a class="btn btn-success nt-btn" href="https://www.cnn.com/health" target="_blank">Read more Health news on CNN</a>
         </div>
         <!-- END HEALTH -->
 
@@ -394,39 +310,41 @@
 
         <!-- START ENTERTAINMENT -->
          <div id="entertainment" class="container tab-pane">
-                <h3>Entertainment</h3>
+                <!-- <h3>Entertainment</h3> -->
                 {% for news in entertainmentnews %}
                     <div class="card">
                         <div class="card-header">
-                            <h5>{{news.title}}</h5>
-                            <p class="card-title"> <h6> {{ news.date }} </h6> </p>
+                            <h5 class="cat-tit">{{news.title}}</h5>
+                            <p class="card-title ti-date">
+                                {{ news.author }} {{ " Updated at " }} {{ news.date }}
+                            </p>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.0}}
                             </p>
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.1}}
                             </p>
                             <small>
-                                <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
+                                <a class="btn-readmore btn" href="#" data-toggle="modal" data-target="#{{news.title}}">Read More...</a>
                                 <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             </small>{}
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                                        <h5 class="modal-title cat-tit" id="exampleModalLabel">{{news.title}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         {% for para in news.data %}
-                                            <p>{{para}}</p>
+                                            <p class="cat-content">{{para}}</p>
                                         {% endfor %}
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
@@ -435,7 +353,7 @@
                     </div>
                     <br>
                 {% endfor %}
-            <a class="btn btn-success" href="https://www.cnn.com/entertainment" target="_blank">Read more news on Entertainment</a>
+            <a class="btn btn-success nt-btn" href="https://www.cnn.com/entertainment" target="_blank">Read more Entertainment news on CNN</a>
         </div>
         <!-- END ENTERTAINMENT -->
 
@@ -444,39 +362,41 @@
 
       <!-- START STYLE -->
          <div id="style" class="container tab-pane">
-                <h3>Style</h3>
+                <!-- <h3>Style</h3> -->
                 {% for news in stylenews %}
                     <div class="card">
                         <div class="card-header">
-                            <h5>{{news.title}}</h5>
-                            <p class="card-title"> <h6> {{ news.date }} </h6> </p>
+                            <h5 class="cat-tit">{{news.title}}</h5>
+                            <p class="card-title ti-date">
+                                {{ news.author }} {{ " Updated at " }} {{ news.date }}
+                            </p>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.0}}
                             </p>
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.1}}
                             </p>
                             <small>
-                                <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
+                                <a class="btn-readmore btn" href="#" data-toggle="modal" data-target="#{{news.title}}">Read More...</a>
                                 <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             </small>{}
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                                        <h5 class="modal-title cat-tit" id="exampleModalLabel">{{news.title}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         {% for para in news.data %}
-                                            <p>{{para}}</p>
+                                            <p class="cat-content">{{para}}</p>
                                         {% endfor %}
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
@@ -485,7 +405,7 @@
                     </div>
                     <br>
                 {% endfor %}
-            <a class="btn btn-success" href="https://www.cnn.com/style" target="_blank">Read more news on Style</a>
+            <a class="btn btn-success nt-btn" href="https://www.cnn.com/style" target="_blank">Read more Style news on CNN</a>
         </div>
         <!-- END STYLE -->
 
@@ -494,39 +414,41 @@
 
         <!-- START TRAVEL -->
          <div id="travel" class="container tab-pane">
-                <h3>Travel</h3>
+                <!-- <h3>Travel</h3> -->
                 {% for news in travelnews %}
                     <div class="card">
                         <div class="card-header">
-                            <h5>{{news.title}}</h5>
-                            <p class="card-title"> <h6> {{ news.date }} </h6> </p>
+                            <h5 class="cat-tit">{{news.title}}</h5>
+                            <p class="card-title ti-date">
+                                {{ news.author }} {{ " Updated at " }} {{ news.date }}
+                            </p>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.0}}
                             </p>
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.1}}
                             </p>
                             <small>
-                                <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
+                                <a class="btn-readmore btn" href="#" data-toggle="modal" data-target="#{{news.title}}">Read More.../a>
                                 <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             </small>{}
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                                        <h5 class="modal-title cat-tit" id="exampleModalLabel">{{news.title}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         {% for para in news.data %}
-                                            <p>{{para}}</p>
+                                            <p class="cat-content">{{para}}</p>
                                         {% endfor %}
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
@@ -535,7 +457,7 @@
                     </div>
                     <br>
                 {% endfor %}
-            <a class="btn btn-success" href="https://www.cnn.com/travel" target="_blank">Read more news on Travel</a>
+            <a class="btn btn-success nt-btn" href="https://www.cnn.com/travel" target="_blank">Read more Travel news on CNN</a>
         </div>
         <!-- END TRAVEL -->
 
@@ -543,39 +465,41 @@
 
          <!-- START SPORTS -->
         <div id="sports" class="container tab-pane">
-                <h3>Sports</h3>
+                <!-- <h3>Sports</h3> -->
                 {% for news in sportsnews %}
                     <div class="card">
                         <div class="card-header">
-                            <h5>{{news.title}}</h5>
-                            <p class="card-title"> <h6> {{ news.date }} </h6> </p>
+                            <h5 class="cat-tit">{{news.title}}</h5>
+                            <p class="card-title ti-date">
+                                {{ news.author }} {{ " Updated at " }} {{ news.date }}
+                            </p>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.1}}
                             </p>
-                            <p class="card-text">
+                            <p class="card-text cat-content">
                                 {{news.data.2}}
                             </p>
                             <small>
-                                <a  href="#" type="button" data-toggle="modal" data-target="#{{news.title}}">Read More</a>
+                                <a class="btn-readmore btn" href="#" data-toggle="modal" data-target="#{{news.title}}">Read More...</a>
                                 <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             </small>{}
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">{{news.title}}</h5>
+                                        <h5 class="modal-title cat-tit" id="exampleModalLabel">{{news.title}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         {% for para in news.data %}
-                                            <p>{{para}}</p>
+                                            <p class="cat-content">{{para}}</p>
                                         {% endfor %}
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
@@ -584,7 +508,7 @@
                     </div>
                     <br>
                 {% endfor %}
-            <a class="btn btn-success" href="https://bleacherreport.com/" target="_blank">Read more news on Sports</a>
+            <a class="btn btn-success nt-btn" href="https://bleacherreport.com/" target="_blank">Read more Sports news on CNN</a>
         </div>
 
         <!-- END SPORTS -->

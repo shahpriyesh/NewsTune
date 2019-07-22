@@ -160,7 +160,7 @@
 }
 
 .nt-body {
-  background: #D1DCA2;
+  background: #E5FFE5;
 }
 
 .nav2 {
@@ -188,6 +188,8 @@
   margin: 40px;
   text-align: center;
   color: #8b8f8b;
-  font-size: 18px;
+  font-size: 14px;
+  bottom: 0;
 }
+
 

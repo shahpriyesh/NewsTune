@@ -42,9 +42,40 @@
   float: right;
 }
 
+.header-col {
+  background-color: #2C596A
+}
+
+/* Home Header  not used */
+.btn-header {
+  background: #2C596A;
+  color: #fff;
+}
+
+.btn-header:hover {
+  background: #2C596A;
+  color: #fff;
+}
+/* Header base */
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link:active {
+  color: #fff !important;
+  background-color: green !important;
+}
+
+/* Form color */
+.bd-form {
+  background: rgb(216, 235, 216);
+}
 
 /* user name */
 .user-name {
+  padding-top: 20px;
+  float: right;
+}
+
+/* Tabs Padding */
+.nav-tab {
   padding-top: 20px;
 }
 
@@ -55,16 +86,60 @@
 
 .tabs-color {
   color:green;
-  font-weight:bold;
+  font-weight:bolder;
 }
 
 /* categories */
-a.tabs:hover, a.tabs:visited{
-  background-color: green;
-  color: white;
+a.tabs:hover{
+  color: green;
   text-decoration: underline;
 }
 
+/* a.tabs:active */
+a.tabs:focus{
+  background-color: green;
+  color: white;
+  
+}
+/* Time & Date */
+.ti-date {
+  color: gray;
+  font-size: 12px;
+}
+
+/* News Title */
+.cat-tit {
+  color: #000000;
+  font-size: 24px;
+  font-family: 'Lucida Sans', Georgia, Verdana;
+  font-weight: bold;
+}
+
+/* main content */
+.cat-content {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: justify;
+  font-size: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Read more btn */
+.btn-readmore {
+  color: green;
+  padding-left: 20px;
+  font-size: 14px;
+}
+
+a.btn:hover{
+  color: green;
+  padding-left: 20px;
+  font-size: 14px;
+}
+
+.btn-close {
+  background-color: #2C596A
+}
 
 /* Footer */
 
