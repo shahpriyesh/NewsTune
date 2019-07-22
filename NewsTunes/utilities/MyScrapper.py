@@ -47,7 +47,7 @@ class MyScrapper:
                 date = date[8:]
             info['date'] = date
 
-             # Author
+            # Author
             author = soup.find(class_="metadata__byline__author")
             if author is not None:
                 author = author.get_text()
@@ -60,6 +60,7 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -108,7 +109,7 @@ class MyScrapper:
                 date = date[8:]
             info['date'] = date
 
-             # Author
+            # Author
             author = soup.find(class_="metadata__byline__author")
             if author is not None:
                 author = author.get_text()
@@ -124,6 +125,7 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -176,7 +178,7 @@ class MyScrapper:
                 date = date[8:]
             info['date'] = date
 
-             # Author
+            # Author
             author = soup.find(class_="metadata__byline__author")
             if author is not None:
                 author = author.get_text()
@@ -189,6 +191,7 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -302,7 +305,7 @@ class MyScrapper:
                 date = date[8:]
             info['date'] = date
 
-             # Author
+            # Author
             author = soup.find(class_="metadata__byline__author")
             if author is not None:
                 author = author.get_text()
@@ -315,6 +318,7 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -361,7 +365,7 @@ class MyScrapper:
                 date = date[8:]
             info['date'] = date
 
-             # Author
+            # Author
             author = soup.find(class_="metadata__byline__author")
             if author is not None:
                 author = author.get_text()
@@ -374,6 +378,7 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -427,7 +432,7 @@ class MyScrapper:
                 #1:30 PM ET, Sat July 20, 2019
             info['date'] = date
 
-             # Author
+            # Author
             author = soup.find(class_="Authors__writer")
             if author is not None:
                 author = author.get_text()
@@ -440,6 +445,7 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -488,7 +494,7 @@ class MyScrapper:
                 date = date.get_text()
             info['date'] = date
 
-             # Author
+            # Author
             author = soup.find(class_="Article__subtitle")
             if author is not None:
                 author = author.get_text()
@@ -501,6 +507,7 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -562,6 +569,7 @@ class MyScrapper:
             if title is not None:
                 title = title.get_text()
                 info['title'] = title
+                print("Fetching -> ", title)
             else:
                 # if title is not found, skip this news
                 continue
@@ -597,4 +605,25 @@ class MyScrapper:
             if len(news) >= 5:
                 break
         return news
+
+    def convertFromDBToInfo(self, newsset):
+        news = []
+        for item in newsset:
+            info = {}
+            news_paragraph_list = []
+
+            info['date'] = item.date
+            info['title'] = item.headline
+            info['author'] = item.author
+            news_paragraph_list = item.body.split("<PB>")
+            info['data'] = news_paragraph_list
+
+            if info:
+                news.append(info)
+
+            if len(news) >= 5:
+                break
+
+        return news
+
 

@@ -6,10 +6,17 @@ from users.models import News
 
 UPDATE_TIME = 300
 
+UPDATE_TIME = 300
+
 def home(request):
     if request.user.is_authenticated:
         cnn = MyScrapper.MyScrapper()
-        News.objects.all().delete()
+
+        #delete news which are older than 5 minutes
+        newsList = News.objects.all()
+        for item in newsList:
+            if item and item.get_time_diff() > UPDATE_TIME:
+                News.objects.filter(id=item.id).delete()
 
         if request.user.usa:
             newsList = News.objects.filter(category="USA")
@@ -18,12 +25,11 @@ def home(request):
                 usanews = cnn.convertFromDBToInfo(newsList)
             else:
                 News.objects.filter(category="USA").delete()
-                print("Fetching USA News")
+                #print("Fetching USA News")
                 print("Fetching USA news from cnn")
                 usanews = cnn.get_usa_news()
                 for news in usanews:
                     wholeNews = ""
-
                 entry = News.objects.create(
                         headline=news['title'],
                         body=wholeNews,

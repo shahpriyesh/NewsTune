@@ -1,9 +1,10 @@
 <!-- templates/home.html-->
 {% extends 'base.html' %}
-
+{% load custom_tags %}
 {% block title %}Home{% endblock %}
 
 {% block content %}
+    {% update_variable True as flag %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/Features-Boxed.css'%}">
     <link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">
@@ -50,10 +51,17 @@
             {% endif %}
         </ul>
         <br>
+
         <div class="tab-content">
             <!-- START USA -->
-            <div id="usa" class="container tab-pane">
-                <!-- <h3>USA</h3> -->
+        {% if user.usa %}
+            {% if flag %}
+                <div id="usa" class="container tab-pane in active">
+                {% update_variable False as flag %}
+            {% else %}
+                <div id="usa" class="container tab-pane">
+            {% endif %}
+                
                 {% for news in usanews %}
                     <div class="card">
                         <div class="card-header">
@@ -98,14 +106,19 @@
                 {% endfor %}
             <a class="btn btn-success nt-btn" href="https://www.cnn.com/us" target="_blank">Read more USA news on CNN</a>
         </div>
+        {% endif %}
         <!-- END USA -->
 
 
-
-
         <!-- START WORLD -->
-         <div id="world" class="container tab-pane">
-                <!-- <h3>World</h3> -->
+        {% if user.world %}
+            {% if flag %}
+                <div id="world" class="container tab-pane in active">
+                {% update_variable False as flag %}
+            {% else %}
+                <div id="world" class="container tab-pane">
+            {% endif %}
+                
                 {% for news in worldnews %}
                     <div class="card">
                         <div class="card-header">
@@ -150,13 +163,19 @@
                     {% endfor %}
                     <a class="btn btn-success nt-btn" href="https://www.cnn.com/world" target="_blank">Read more World news on CNN</a>
         </div>
+        {% endif %}
         <!-- END WORLD -->
 
 
-
         <!-- START BUSINESS -->
-         <div id="business" class="container tab-pane">
-                <!-- <h3>Business</h3> -->
+        {% if user.business %}
+            {% if flag %}
+                <div id="business" class="container tab-pane in active">
+                {% update_variable False as flag %}
+            {% else %}
+                <div id="business" class="container tab-pane">
+            {% endif %}
+                
                 {% for news in businessnews %}
                     <div class="card">
                         <div class="card-header">
@@ -201,13 +220,19 @@
                 {% endfor %}
             <a class="btn btn-success nt-btn" href="https://www.cnn.com/business" target="_blank">Read more Business news on CNN</a>
         </div>
+        {% endif %}
         <!-- END BUSINESS -->
 
 
-
          <!-- START OPINION -->
-         <div id="opinion" class="container tab-pane">
-                <!-- <h3>Opinion</h3> -->
+        {% if user.opinion %}
+            {% if flag %}
+                <div id="opinion" class="container tab-pane in active">
+                {% update_variable False as flag %}
+            {% else %}
+                <div id="opinion" class="container tab-pane">
+            {% endif %}
+                
                 {% for news in opinionnews %}
                     <div class="card">
                         <div class="card-header">
@@ -252,14 +277,19 @@
                 {% endfor %}
             <a class="btn btn-success nt-btn" href="https://www.cnn.com/opinions" target="_blank">Read more Opinion news on CNN</a>
         </div>
+        {% endif %}
         <!-- END OPINION -->
 
 
-
-
         <!-- START HEALTH -->
-         <div id="health" class="container tab-pane">
-                <!-- <h3>Health</h3> -->
+        {% if user.health %}
+            {% if flag %}
+                <div id="health" class="container tab-pane in active">
+                {% update_variable False as flag %}
+            {% else %}
+                <div id="health" class="container tab-pane">
+            {% endif %}
+                
                 {% for news in healthnews %}
                     <div class="card">
                         <div class="card-header">
@@ -304,13 +334,19 @@
                 {% endfor %}
             <a class="btn btn-success nt-btn" href="https://www.cnn.com/health" target="_blank">Read more Health news on CNN</a>
         </div>
+        {% endif %}
         <!-- END HEALTH -->
 
 
-
         <!-- START ENTERTAINMENT -->
-         <div id="entertainment" class="container tab-pane">
-                <!-- <h3>Entertainment</h3> -->
+        {% if user.entertainment %}
+            {% if flag %}
+                <div id="entertainment" class="container tab-pane in active">
+                {% update_variable False as flag %}
+            {% else %}
+                <div id="entertainment" class="container tab-pane">
+            {% endif %}
+                
                 {% for news in entertainmentnews %}
                     <div class="card">
                         <div class="card-header">
@@ -355,14 +391,19 @@
                 {% endfor %}
             <a class="btn btn-success nt-btn" href="https://www.cnn.com/entertainment" target="_blank">Read more Entertainment news on CNN</a>
         </div>
+        {% endif %}
         <!-- END ENTERTAINMENT -->
 
 
-
-
       <!-- START STYLE -->
-         <div id="style" class="container tab-pane">
-                <!-- <h3>Style</h3> -->
+        {% if user.style %}
+            {% if flag %}
+                <div id="style" class="container tab-pane in active">
+                {% update_variable False as flag %}
+            {% else %}
+                <div id="style" class="container tab-pane">
+            {% endif %}
+                
                 {% for news in stylenews %}
                     <div class="card">
                         <div class="card-header">
@@ -407,20 +448,24 @@
                 {% endfor %}
             <a class="btn btn-success nt-btn" href="https://www.cnn.com/style" target="_blank">Read more Style news on CNN</a>
         </div>
+        {% endif %}
         <!-- END STYLE -->
 
 
-
-
         <!-- START TRAVEL -->
-         <div id="travel" class="container tab-pane">
-                <!-- <h3>Travel</h3> -->
+        {% if user.travel %}
+            {% if flag %}
+                <div id="travel" class="container tab-pane in active">
+                {% update_variable False as flag %}
+            {% else %}
+                <div id="travel" class="container tab-pane">
+            {% endif %}          
                 {% for news in travelnews %}
                     <div class="card">
                         <div class="card-header">
                             <h5 class="cat-tit">{{news.title}}</h5>
                             <p class="card-title ti-date">
-                                {{ news.author }} {{ " Updated at " }} {{ news.date }}
+                                {{ news.date }}
                             </p>
                         </div>
                         <div class="card-body">
@@ -431,7 +476,7 @@
                                 {{news.data.1}}
                             </p>
                             <small>
-                                <a class="btn-readmore btn" href="#" data-toggle="modal" data-target="#{{news.title}}">Read More.../a>
+                                <a class="btn-readmore btn" href="#" data-toggle="modal" data-target="#{{news.title}}">Read More...</a>
                                 <div class="modal fade modal0" id="{{news.title}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                             </small>{}
                             <div class="modal-dialog modal-lg">
@@ -459,13 +504,19 @@
                 {% endfor %}
             <a class="btn btn-success nt-btn" href="https://www.cnn.com/travel" target="_blank">Read more Travel news on CNN</a>
         </div>
+        {% endif %}
         <!-- END TRAVEL -->
 
 
-
          <!-- START SPORTS -->
-        <div id="sports" class="container tab-pane">
-                <!-- <h3>Sports</h3> -->
+        {% if user.sports %}
+            {% if flag %}
+                <div id="sports" class="container tab-pane in active">
+                {% update_variable False as flag %}
+            {% else %}
+                <div id="sports" class="container tab-pane">
+            {% endif %}
+                
                 {% for news in sportsnews %}
                     <div class="card">
                         <div class="card-header">
@@ -510,7 +561,7 @@
                 {% endfor %}
             <a class="btn btn-success nt-btn" href="https://bleacherreport.com/" target="_blank">Read more Sports news on CNN</a>
         </div>
-
+        {% endif %}
         <!-- END SPORTS -->
 
 

@@ -83,6 +83,5 @@ def print_news(news):
         print()
         print()
 
-
 news = get_usa_news()
 print_news(news)
