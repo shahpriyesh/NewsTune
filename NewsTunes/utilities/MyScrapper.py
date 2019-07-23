@@ -534,6 +534,7 @@ class MyScrapper:
         page = requests.get('https://bleacherreport.com/')
         soup = BeautifulSoup(page.content, 'html.parser')
         layout = soup.find(class_='organism contentStream featuredArticles')
+        #print(layout)
         urls = layout.findAll(class_='articleContent')
 
         webpage_urls = []

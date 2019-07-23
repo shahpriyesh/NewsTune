@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{% static 'css/Navigation-with-Search.css' %}">
     <link rel="stylesheet" href="{% static 'css/slider.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/tonystar/float-label-css/v1.0.2/dist/float-label.min.css"/>
+
     <!--{% load static %} 
     <link rel="stylesheet" href="{% static 'css/Login-Form-Clean.css'%}">
     <link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">  -->
@@ -24,28 +26,111 @@
     <div class="login-clean bd-form">
         
         <form method="post">
-                <h5 class="text-center nt-login-head">Signup to News Tunes</h5>
-            {% csrf_token %}          
-            {% for field in form %}
-                <p>
-                    {% if field == "usa" %}
-                        {{ field }}
-                        {{ field.label_tag }}
-                    {% else %}
-                        {{ field.label_tag }}
-                        {{ field }}
-                    {% endif %}
-                    {% if field.help_text %}
-                        <small style="color: grey">{{ field.help_text }}</small>
-                    {% endif %}
-                    {% for error in field.errors %}
-                        <p style="color: red">{{ error }}</p>
-                    {% endfor %}
-                </p>
-            {% endfor %}
-            <div class="form-group"><button class="btn btn-block nt-btn" type="submit">Signup with News Tunes</button></div>
+            <h5 class="text-center nt-login-head">Signup to News Tunes</h5>
+            {% csrf_token %} 
+            <div>  
+                <div class="card">
+                    <div class="card-body">
+                        {% for field in form %}
+                        {% if field.name == "username" %}
+                        <label class="has-float-label">
+                            <input class="form-control pg-box" id="{{ field.id_for_label }}" name="{{ field.html_name }}" placeholder="{{ field.label }}" type="{{ field.label }}" />
+                            <span class="pg-uname">User Name</span>
+                        </label>
+                        {% elif field.name == "email" %}
+                        <label class="has-float-label">
+                            <input class="form-control pg-box" id="{{ field.id_for_label }}" name="{{ field.html_name }}" placeholder="{{ field.label }}" type="{{ field.label }}" />
+                            <span class="pg-uname">Email</span>
+                        </label>
+                        {% elif field.name != "usa" and field.name != "opinion" and field.name != "business" and field.name != "health" and field.name != "world" and field.name != "entertainment" and field.name != "style" and field.name != "travel" and field.name != "sports" %}
+                        <label class="has-float-label">
+                            <input class="form-control pg-box" id="{{ field.id_for_label }}" name="{{ field.html_name }}" placeholder="{{ field.label }}" type="password" />
+                            <span class="pg-uname">Password</span>
+                        </label>
+                        {% if field.help_text %}
+                        <small style="color: grey" class="pg-signup">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% for error in field.errors %}
+                        <p style="color: red" class="pg-signup">{{ error }}</p>
+                        {% endfor %}
+                        {% else %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+                        <p class="signup-ft"> Choose Interested Topics</p>
+                        <div class="form-row nt-grid-image-cont">
+                            {% for field in form %}
+                            {% if field.name == "usa" %}
+                            <div class="col nt-grid-image usa">
+                                <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+                            </div>
+                            {% elif field.name == "world" %}
+                            <div class="col nt-grid-image world">
+                                <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+                            </div>
+                            {% elif field.name == "business" %}
+                            <div class="col nt-grid-image business">
+                                <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+                            </div>
+                            {% else %}
+                
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                
+                        <div class="form-row nt-grid-image-cont">
+                            {% for field in form %}
+                            {% if field.name == "opinion" %}
+                            <div class="col nt-grid-image opinion">
+                                <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+                            </div>
+                            {% elif field.name == "health" %}
+                            <div class="col nt-grid-image health">
+                                <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+                            </div>
+                            {% elif field.name == "entertainment" %}
+                            <div class="col nt-grid-image entertainment">
+                                <label class="nt-grid-lab " style="font-size: 10px;">{{ field.label_tag }} </label> {{field}}
+                            </div>
+                            {% else %}
+                
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                
+                        <div class="form-row nt-grid-image-cont">
+                            {% for field in form %}
+                            {% if field.name == "style" %}
+                            <div class="col nt-grid-image style">
+                                <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+                            </div>
+                            {% elif field.name == "travel" %}
+                            <div class="col nt-grid-image travel">
+                                <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+                            </div>
+                            {% elif field.name == "sports" %}
+                            <div class="col nt-grid-image sports">
+                                <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+                            </div>
+                            {% else %}
+                
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        <!--{{ field.label_tag }} 
+                                                              {{ field }} -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group"><button class="btn btn-block nt-btn" type="submit">Signup with News Tunes</button></div>           
         </form>
     </div>
+
 {% endblock %}
 
 

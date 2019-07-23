@@ -71,66 +71,69 @@
 .nt-grid-image {
   width: 40px;
   height: 80px;
-  border: 1pt;
-  border-radius: 5px;
-  border-color: #ff0;
+  border: 10px;
+  padding-bottom: 2px;
+  border-radius: 10px;
+  border-color: #c20b14;
   text-align: left;
 }
 
-.edu {
-  background: url(../../assets/img/edu.png) no-repeat;
+.usa {
+  background: url(usa.jpg) no-repeat;
   background-size: 60px 60px;
 }
 
-.tech {
-  background: url(../../assets/img/tech.png) no-repeat;
+.world {
+  background: url(world.jpg) no-repeat;
   background-size: 60px 60px;
 }
 
-.sci {
-  background: url(../../assets/img/science.png) no-repeat;
+.business {
+  background: url(business.jpeg) no-repeat;
   background-size: 60px 60px;
 }
 
 .health {
-  background: url(../../assets/img/health.png) no-repeat;
+  background: url(health.png) no-repeat;
   background-size: 60px 60px;
 }
 
 .sports {
-  background: url(../../assets/img/sports.png) no-repeat;
+  background: url(sports.png) no-repeat;
   background-size: 60px 60px;
 }
 
-.movies {
-  background: url(../../assets/img/movie.png) no-repeat;
+.opinion {
+  background: url(opinion.png) no-repeat;
   background-size: 60px 60px;
 }
 
-.fashion {
-  background: url(../../assets/img/fashion.png) no-repeat;
+.style {
+  background: url(style.png) no-repeat;
   background-size: 60px 60px;
 }
 
-.finance {
-  background: url(../../assets/img/finance.png) no-repeat;
+.travel {
+  background: url(travel.png) no-repeat;
   background-size: 60px 60px;
 }
 
-.lit {
-  background: url(../../assets/img/literature.png) no-repeat;
+.entertainment {
+  background: url(entertainment.jpg) no-repeat;
   background-size: 60px 60px;
 }
 
 .nt-grid-lab {
-  padding-top: 50%;
-  font-size: 13px;
+  padding-top: 70%;
+  font-size: 12px;
+  text-align: left;
 }
 
 .nt-grid-image-cont {
   margin-bottom: 30pt;
-  border-width: 2pt;
+  border-width: 2px;
   border-color: #f00;
+  padding-bottom: 0px;
 }
 
 .center-card {

@@ -141,6 +141,24 @@ a.btn:hover{
   background-color: #2C596A
 }
 
+.pg-signup {
+  font-size: 12px;
+}
+
+.pg-box {
+  height: 38px !important;
+}
+
+.pg-outbox {
+  padding-left: 0px;
+}
+
+.signup-ft {
+  font-size: 14px;
+  text-align: center;
+}
+
+
 /* Footer */
 
 

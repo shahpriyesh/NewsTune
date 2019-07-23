@@ -26,23 +26,83 @@
       {% csrf_token %}
       <div class="card">
         <div class="card-body">
-          {% for field in form %}
+
+          <div class="form-row nt-grid-image-cont">
+            {% for field in form %}
+            {% if field.name == "usa" %}
+            <div class="col nt-grid-image usa">
+              <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+            </div>
+            {% elif field.name == "world" %}
+            <div class="col nt-grid-image world">
+              <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+            </div>
+            {% elif field.name == "business" %}
+            <div class="col nt-grid-image business">
+              <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+            </div>
+            {% else %}
             
+            {% endif %}
+            {% endfor %}
+          </div>
               
-            {{ field.label_tag }} 
-            {{ field }} 
-            <br>          
-          {% endfor %}
+          <div class="form-row nt-grid-image-cont">
+            {% for field in form %}
+            {% if field.name == "opinion" %}
+            <div class="col nt-grid-image opinion">
+              <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+            </div>
+            {% elif field.name == "health" %}
+            <div class="col nt-grid-image health">
+              <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+            </div>
+            {% elif field.name == "entertainment" %}
+            <div class="col nt-grid-image entertainment">
+              <label class="nt-grid-lab " style="font-size: 10px;">{{ field.label_tag }} </label> {{field}}
+            </div>
+            {% else %}
+            
+            {% endif %}
+            {% endfor %}
+          </div>
+        
+          <div class="form-row nt-grid-image-cont">
+            {% for field in form %}
+            {% if field.name == "style" %}
+            <div class="col nt-grid-image style">
+              <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+            </div>
+            {% elif field.name == "travel" %}
+            <div class="col nt-grid-image travel">
+              <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+            </div>
+            {% elif field.name == "sports" %}
+            <div class="col nt-grid-image sports">
+              <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}} 
+            </div>
+            {% else %}
+            
+            {% endif %}
+            {% endfor %}
+          </div>
+          <!--{{ field.label_tag }} 
+                    {{ field }} -->
+          <br>
+
+
           <button class="btn pref-btn nt-btn" type="submit">Save</button>       
         </div>
       </div>
     </form>
   </div>
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="assets/js/slider.js"></script>
-  <script src="assets/js/slider1.js"></script>
- 
+  
+  <!--
+  <script src="static/js/jquery.min.js"></script>
+  <script src="static/bootstrap/js/bootstrap.min.js"></script>
+  <script src="static/js/slider.js"></script>
+  <script src="static/js/slider1.js"></script>
+ -->
 
   <!--
   <form method="post">
