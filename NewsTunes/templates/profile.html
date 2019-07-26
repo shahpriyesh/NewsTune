@@ -19,7 +19,7 @@
 
   
   <div class="col dummy10"></div> 
-  <div class="login-clean ">
+  <div class="login-clean bd-form">
     
     <form method="POST">
       <h5 class="text-center nt-login-head">Preferences</h5>
@@ -86,55 +86,13 @@
             {% endif %}
             {% endfor %}
           </div>
-          <!--{{ field.label_tag }} 
-                    {{ field }} -->
           <br>
-
-
+          
           <button class="btn pref-btn nt-btn" type="submit">Save</button>       
         </div>
       </div>
     </form>
   </div>
   
-  <!--
-  <script src="static/js/jquery.min.js"></script>
-  <script src="static/bootstrap/js/bootstrap.min.js"></script>
-  <script src="static/js/slider.js"></script>
-  <script src="static/js/slider1.js"></script>
- -->
 
-  <!--
-  <form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-      <p>
-          {{ field }}
-          {{ field.label_tag }}
-
-        {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
-    {% endfor %}
-    <button type="submit">Save</button>
-  </form> 
-
-<div class="form-row nt-grid-image-cont">
-                <div class="col nt-grid-image edu">
-                    <div class="round"><input type="checkbox" id="checkbox"><label for="checkbox"></label></div>
-                    <label class="text-left nt-grid-lab">
-                      {{ field }}
-                      {{ field.label_tag }}
-                    </label>
-                </div>
-            </div>
-
-
-
-
--->
 {% endblock %}

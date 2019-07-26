@@ -4,56 +4,55 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/Features-Boxed.css'%}">
-    <link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">
-    <link rel="stylesheet" href="{% static 'fonts/fontawesome-all.min.css' %}">
-    <link rel="stylesheet" href="{% static 'fonts/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'fonts/fontawesome5-overrides.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/checkbox.css' %}">
-    <link rel="stylesheet" href="{% static 'css/Login-Form-Clean.css' %}">
-    <link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">
-    <link rel="stylesheet" href="{% static 'css/Navigation-with-Search.css' %}">
-    <link rel="stylesheet" href="{% static 'css/slider.css' %}">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/Features-Boxed.css'%}">
+<link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">
+<link rel="stylesheet" href="{% static 'fonts/fontawesome-all.min.css' %}">
+<link rel="stylesheet" href="{% static 'fonts/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'fonts/fontawesome5-overrides.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/checkbox.css' %}">
+<link rel="stylesheet" href="{% static 'css/Login-Form-Clean.css' %}">
+<link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">
+<link rel="stylesheet" href="{% static 'css/Navigation-with-Search.css' %}">
+<link rel="stylesheet" href="{% static 'css/slider.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
-    <div class="col dummy10"></div>
-    <div class="col dummy10"></div>
-    <div class="login-clean bd-form">
-        
-        <form method="post">
-            <h5 class="text-center nt-login-head">Signup to News Tunes</h5>
-            {% csrf_token %} 
-            <div>  
-                <div class="card">
-                    <div class="card-body">
-                        <div class="illustration">
-                            {% for field in form %}
-                            {% if field.name == "username" %}
-                            <div class="input-group nt-ip">
-                                <span class="input-group-prepend" style="height: 42px;">
-                                    <span class="glyphicon glyphicon-user"></span>
-                                </span>
-                                <input class="form-control" id="{{ field.id_for_label }}" name="{{ field.html_name }}"
-                                    placeholder="{{ field.label }}" type="{{ field.label }}" />
-                            </div>
-                            {% elif field.name == "email" %}
-                            <div class="input-group nt-ip">
-                                <span class="input-group-prepend" style="height: 42px;">
-                                    <span class="glyphicon glyphicon-user"></span></span>
-                                <input class="form-control" id="{{ field.id_for_label }}" name="{{ field.html_name }}"
-                                    placeholder="{{ field.label }}" type="{{ field.label }}" />
-                                <div class="input-group-append"></div>
-                            </div>
-                    
-                            {% elif field.name != "usa" and field.name != "opinion" and field.name != "business" and field.name != "health" and field.name != "world" and field.name != "entertainment" and field.name != "style" and field.name != "travel" and field.name != "sports" %}
-                            <div class="input-group nt-ip">
-                                <span class="input-group-prepend" style="height: 42px;">
-                                    <span class="glyphicon glyphicon-user"></span></span>
-                                <input class="form-control" id="{{ field.id_for_label }}" name="{{ field.html_name }}"
-                                    placeholder="{{ field.label }}" type="{{ field.label }}" />
-                                <div class="input-group-append"></div>
-                            
+<div class="col dummy10"></div>
+<div class="col dummy10"></div>
+<div class="login-clean bd-form">
+    <form method="post">
+        <h5 class="text-center nt-login-head">Signup to News Tunes</h5>
+        {% csrf_token %}
+        <div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="illustration">
+                        {% for field in form %}
+                        {% if field.name == "username" %}
+                        <div class="input-group nt-ip">
+                            <span class="input-group-prepend" style="height: 42px;">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </span>
+                            <input class="form-control" id="{{ field.id_for_label }}" name="{{ field.html_name }}"
+                                placeholder="{{ field.label }}" type="{{ field.label }}" />
+                        </div>
+                        {% elif field.name == "email" %}
+                        <div class="input-group nt-ip">
+                            <span class="input-group-prepend" style="height: 42px;">
+                                <span class="glyphicon glyphicon-user"></span></span>
+                            <input class="form-control" id="{{ field.id_for_label }}" name="{{ field.html_name }}"
+                                placeholder="{{ field.label }}" type="{{ field.label }}" />
+                            <div class="input-group-append"></div>
+                        </div>
+
+                        {% elif field.name != "usa" and field.name != "opinion" and field.name != "business" and field.name != "health" and field.name != "world" and field.name != "entertainment" and field.name != "style" and field.name != "travel" and field.name != "sports" %}
+                        <div class="input-group nt-ip">
+                            <span class="input-group-prepend" style="height: 42px;">
+                                <span class="glyphicon glyphicon-user"></span></span>
+                            <input class="form-control" id="{{ field.id_for_label }}" name="{{ field.html_name }}"
+                                placeholder="{{ field.label }}" type="{{ field.label }}" />
+                            <div class="input-group-append"></div>
+
                             {% if field.help_text %}
                             <small style="color: grey" class="pg-signup">{{ field.help_text }}</small>
                             {% endif %}
@@ -63,78 +62,80 @@
                             {% else %}
                             {% endif %}
                             {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="card-body">
-                        <p class="signup-ft"> Choose Interested Topics</p>
-                        <div class="form-row nt-grid-image-cont">
-                            {% for field in form %}
-                            {% if field.name == "usa" %}
-                            <div class="col nt-grid-image usa">
-                                <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
-                            </div>
-                            {% elif field.name == "world" %}
-                            <div class="col nt-grid-image world">
-                                <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
-                            </div>
-                            {% elif field.name == "business" %}
-                            <div class="col nt-grid-image business">
-                                <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
-                            </div>
-                            {% else %}
-                
-                            {% endif %}
-                            {% endfor %}
-                        </div>
-                
-                        <div class="form-row nt-grid-image-cont">
-                            {% for field in form %}
-                            {% if field.name == "opinion" %}
-                            <div class="col nt-grid-image opinion">
-                                <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
-                            </div>
-                            {% elif field.name == "health" %}
-                            <div class="col nt-grid-image health">
-                                <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
-                            </div>
-                            {% elif field.name == "entertainment" %}
-                            <div class="col nt-grid-image entertainment">
-                                <label class="nt-grid-lab " style="font-size: 10px;">{{ field.label_tag }} </label> {{field}}
-                            </div>
-                            {% else %}
-                
-                            {% endif %}
-                            {% endfor %}
-                        </div>
-                
-                        <div class="form-row nt-grid-image-cont">
-                            {% for field in form %}
-                            {% if field.name == "style" %}
-                            <div class="col nt-grid-image style">
-                                <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
-                            </div>
-                            {% elif field.name == "travel" %}
-                            <div class="col nt-grid-image travel">
-                                <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
-                            </div>
-                            {% elif field.name == "sports" %}
-                            <div class="col nt-grid-image sports">
-                                <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
-                            </div>
-                            {% else %}
-                
-                            {% endif %}
-                            {% endfor %}
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group"><button class="btn btn-block nt-btn" type="submit">Signup with News Tunes</button></div>           
-        </form>
+                <div class="card-body">
+                    <p class="signup-ft"> Choose Interested Topics</p>
+                    <div class="form-row nt-grid-image-cont">
+                        {% for field in form %}
+                        {% if field.name == "usa" %}
+                        <div class="col nt-grid-image usa">
+                            <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+                        </div>
+                        {% elif field.name == "world" %}
+                        <div class="col nt-grid-image world">
+                            <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+                        </div>
+                        {% elif field.name == "business" %}
+                        <div class="col nt-grid-image business">
+                            <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+                        </div>
+                        {% else %}
+
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-row nt-grid-image-cont">
+                        {% for field in form %}
+                        {% if field.name == "opinion" %}
+                        <div class="col nt-grid-image opinion">
+                            <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+                        </div>
+                        {% elif field.name == "health" %}
+                        <div class="col nt-grid-image health">
+                            <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+                        </div>
+                        {% elif field.name == "entertainment" %}
+                        <div class="col nt-grid-image entertainment">
+                            <label class="nt-grid-lab " style="font-size: 10px;">{{ field.label_tag }} </label>
+                            {{field}}
+                        </div>
+                        {% else %}
+
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-row nt-grid-image-cont">
+                        {% for field in form %}
+                        {% if field.name == "style" %}
+                        <div class="col nt-grid-image style">
+                            <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+                        </div>
+                        {% elif field.name == "travel" %}
+                        <div class="col nt-grid-image travel">
+                            <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+                        </div>
+                        {% elif field.name == "sports" %}
+                        <div class="col nt-grid-image sports">
+                            <label class="nt-grid-lab ">{{ field.label_tag }} </label> {{field}}
+                        </div>
+                        {% else %}
+
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group"><button class="btn btn-block nt-btn" type="submit">Signup with News Tunes</button></div>
+    </form>
     </div>
+</div>
 
 {% endblock %}
 
