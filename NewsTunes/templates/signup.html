@@ -16,11 +16,7 @@
     <link rel="stylesheet" href="{% static 'css/Navigation-with-Search.css' %}">
     <link rel="stylesheet" href="{% static 'css/slider.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="stylesheet" href="https://cdn.rawgit.com/tonystar/float-label-css/v1.0.2/dist/float-label.min.css"/>
 
-    <!--{% load static %} 
-    <link rel="stylesheet" href="{% static 'css/Login-Form-Clean.css'%}">
-    <link rel="stylesheet" href="{% static 'css/Navigation-Clean.css' %}">  -->
     <div class="col dummy10"></div>
     <div class="col dummy10"></div>
     <div class="login-clean bd-form">
@@ -31,35 +27,46 @@
             <div>  
                 <div class="card">
                     <div class="card-body">
-                        {% for field in form %}
-                        {% if field.name == "username" %}
-                        <label class="has-float-label">
-                            <input class="form-control pg-box" id="{{ field.id_for_label }}" name="{{ field.html_name }}" placeholder="{{ field.label }}" type="{{ field.label }}" />
-                            <span class="pg-uname">User Name</span>
-                        </label>
-                        {% elif field.name == "email" %}
-                        <label class="has-float-label">
-                            <input class="form-control pg-box" id="{{ field.id_for_label }}" name="{{ field.html_name }}" placeholder="{{ field.label }}" type="{{ field.label }}" />
-                            <span class="pg-uname">Email</span>
-                        </label>
-                        {% elif field.name != "usa" and field.name != "opinion" and field.name != "business" and field.name != "health" and field.name != "world" and field.name != "entertainment" and field.name != "style" and field.name != "travel" and field.name != "sports" %}
-                        <label class="has-float-label">
-                            <input class="form-control pg-box" id="{{ field.id_for_label }}" name="{{ field.html_name }}" placeholder="{{ field.label }}" type="password" />
-                            <span class="pg-uname">Password</span>
-                        </label>
-                        {% if field.help_text %}
-                        <small style="color: grey" class="pg-signup">{{ field.help_text }}</small>
-                        {% endif %}
-                        {% for error in field.errors %}
-                        <p style="color: red" class="pg-signup">{{ error }}</p>
-                        {% endfor %}
-                        {% else %}
-                        {% endif %}
-                        {% endfor %}
+                        <div class="illustration">
+                            {% for field in form %}
+                            {% if field.name == "username" %}
+                            <div class="input-group nt-ip">
+                                <span class="input-group-prepend" style="height: 42px;">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                </span>
+                                <input class="form-control" id="{{ field.id_for_label }}" name="{{ field.html_name }}"
+                                    placeholder="{{ field.label }}" type="{{ field.label }}" />
+                            </div>
+                            {% elif field.name == "email" %}
+                            <div class="input-group nt-ip">
+                                <span class="input-group-prepend" style="height: 42px;">
+                                    <span class="glyphicon glyphicon-user"></span></span>
+                                <input class="form-control" id="{{ field.id_for_label }}" name="{{ field.html_name }}"
+                                    placeholder="{{ field.label }}" type="{{ field.label }}" />
+                                <div class="input-group-append"></div>
+                            </div>
+                    
+                            {% elif field.name != "usa" and field.name != "opinion" and field.name != "business" and field.name != "health" and field.name != "world" and field.name != "entertainment" and field.name != "style" and field.name != "travel" and field.name != "sports" %}
+                            <div class="input-group nt-ip">
+                                <span class="input-group-prepend" style="height: 42px;">
+                                    <span class="glyphicon glyphicon-user"></span></span>
+                                <input class="form-control" id="{{ field.id_for_label }}" name="{{ field.html_name }}"
+                                    placeholder="{{ field.label }}" type="{{ field.label }}" />
+                                <div class="input-group-append"></div>
+                            
+                            {% if field.help_text %}
+                            <small style="color: grey" class="pg-signup">{{ field.help_text }}</small>
+                            {% endif %}
+                            {% for error in field.errors %}
+                            <p style="color: red" class="pg-signup">{{ error }}</p>
+                            {% endfor %}
+                            {% else %}
+                            {% endif %}
+                            {% endfor %}
+                            </div>
+                        </div>
                     </div>
-                </div>
                 
-                <div class="card">
                     <div class="card-body">
                         <p class="signup-ft"> Choose Interested Topics</p>
                         <div class="form-row nt-grid-image-cont">
@@ -121,8 +128,6 @@
                             {% endif %}
                             {% endfor %}
                         </div>
-                        <!--{{ field.label_tag }} 
-                                                              {{ field }} -->
                     </div>
                 </div>
             </div>

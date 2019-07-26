@@ -533,13 +533,13 @@ class MyScrapper:
         # CNN Sports news
         page = requests.get('https://bleacherreport.com/')
         soup = BeautifulSoup(page.content, 'html.parser')
-        layout = soup.find(class_='organism contentStream featuredArticles')
+        layout = soup.find(class_='organism heroLite')
+        urls = layout.findAll(class_='text')
         #print(layout)
-        urls = layout.findAll(class_='articleContent')
 
         webpage_urls = []
-        news = []
-
+        news = []       
+            
         for link in urls:
             url = link.find('a')
             webpage_urls.append(url.get('href'))
@@ -586,6 +586,10 @@ class MyScrapper:
 
             if info:
                 news.append(info)
+
+            if len(news) >= 5:
+                break
+
         return news
 
     def convertFromDBToInfo(self, newsset):
