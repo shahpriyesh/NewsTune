@@ -6,138 +6,6 @@ from users.models import News
 
 UPDATE_TIME = 300
 
-UPDATE_TIME = 300
-
-def home(request):
-    if request.user.is_authenticated:
-        cnn = MyScrapper.MyScrapper()
-
-        #delete news which are older than 5 minutes
-        newsList = News.objects.all()
-        for item in newsList:
-            if item and item.get_time_diff() > UPDATE_TIME:
-                News.objects.filter(id=item.id).delete()
-
-        if request.user.usa:
-            newsList = News.objects.filter(category="USA")
-            if newsList and newsList[0].get_time_diff() < UPDATE_TIME:
-                print("Fetching news from database")
-                usanews = cnn.convertFromDBToInfo(newsList)
-            else:
-                News.objects.filter(category="USA").delete()
-                #print("Fetching USA News")
-                print("Fetching USA news from cnn")
-                usanews = cnn.get_usa_news()
-                for news in usanews:
-                    wholeNews = ""
-                entry = News.objects.create(
-                        headline=news['title'],
-                        body=wholeNews,
-                        date=news['date'],
-                        author=news['author'],
-                        category="USA"
-                    )
-
-        if request.user.world:
-            print("Fetching World News")
-            worldnews = cnn.get_world_news()
-            for news in worldnews:
-                News.objects.create(
-                    headline=news['title'],
-                    body="".join(news['data']),
-                    date=news['date'],
-                    author=news['author'],
-                    category="World"
-                )   
-
-        if request.user.business:
-            print("Fetching Business News")
-            businessnews = cnn.get_business_news()
-            for news in businessnews:
-                News.objects.create(
-                    headline=news['title'],
-                    body="".join(news['data']),
-                    date=news['date'],
-                    author=news['author'],
-                    category="Business"
-                )
-
-        if request.user.opinion:
-            print("Fetching Opinion News")
-            opinionnews = cnn.get_opinion_news()
-            for news in opinionnews:
-                News.objects.create(
-                    headline=news['title'],
-                    body="".join(news['data']),
-                    date=news['date'],
-                    author=news['author'],
-                    category="Opinion"
-                )
-
-        if request.user.health:
-            print("Fetching Health News")
-            healthnews = cnn.get_health_news()
-            for news in healthnews:
-                News.objects.create(
-                    headline=news['title'],
-                    body="".join(news['data']),
-                    date=news['date'],
-                    author=news['author'],
-                    category="Health"
-                )
-
-        if request.user.entertainment:
-            print("Fetching Entertainment News")
-            entertainmentnews = cnn.get_entertainment_news()
-            for news in entertainmentnews:
-                News.objects.create(
-                    headline=news['title'],
-                    body="".join(news['data']),
-                    date=news['date'],
-                    author=news['author'],
-                    category="Entertainment"
-                )
-
-        if request.user.style:
-            print("Fetching Style News")
-            stylenews = cnn.get_style_news()
-            for news in stylenews:
-                News.objects.create(
-                    headline=news['title'],
-                    body="".join(news['data']),
-                    date=news['date'],
-                    author=news['author'],
-                    category="Style"
-                )
-
-        if request.user.travel:
-            print("Fetching Travel News")
-            travelnews = cnn.get_travel_news()
-            for news in travelnews:
-                News.objects.create(
-                    headline=news['title'],
-                    body="".join(news['data']),
-                    date=news['date'],
-                    author=news['author'],
-                    category="Travel"
-                )
-        
-        if request.user.sports:
-            print("Fetching Sports News")
-            sportsnews = cnn.get_sports_news()
-            for news in sportsnews:
-                News.objects.create(
-                    headline=news['title'],
-                    body="".join(news['data']),
-                    date=news['date'],
-                    author=news['author'],
-                    category="Sports"
-                )
-
-    return render(request, 'home.html', locals())
-
-
-'''
 def home(request):
     if request.user.is_authenticated:
         cnn = MyScrapper.MyScrapper()
@@ -212,7 +80,6 @@ def home(request):
                         category="Business"
                     )
 
-
         if request.user.opinion:
             newsList = News.objects.filter(category="Opinion")
             if newsList and newsList[0].get_time_diff() < UPDATE_TIME:
@@ -233,8 +100,6 @@ def home(request):
                         author=news['author'],
                         category="Opinion"
                     )
-
-
 
         if request.user.health:
             newsList = News.objects.filter(category="Health")
@@ -299,7 +164,6 @@ def home(request):
                         category="Style"
                     )
 
-
         if request.user.travel:
             newsList = News.objects.filter(category="Travel")
             if newsList and newsList[0].get_time_diff() < UPDATE_TIME:
@@ -344,4 +208,4 @@ def home(request):
 
     return render(request, 'home.html', locals())
 
-'''
+
