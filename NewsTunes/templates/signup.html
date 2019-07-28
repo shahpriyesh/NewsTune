@@ -50,7 +50,7 @@
                             <span class="input-group-prepend" style="height: 42px;">
                                 <span class="glyphicon glyphicon-user"></span></span>
                             <input class="form-control" id="{{ field.id_for_label }}" name="{{ field.html_name }}"
-                                placeholder="{{ field.label }}" type="{{ field.label }}" />
+                                placeholder="{{ field.label }}" type="PASSWORD" autocomplete="OFF"/>
                             <div class="input-group-append"></div>
 
                             {% if field.help_text %}
@@ -64,10 +64,10 @@
                         {% endif %}
                         {% endfor %}
                     </div>
-                    <div class="form-check">
+                    <!-- <div class="form-check">
                         <input class="form-check-input" type="radio" id="formCheck-3">
                         <label class="form-check-label pg-signup" for="formCheck-3">I Agree to the Terms &amp; Conditions<br></label>
-                    </div>                  
+                    </div>      -->
                 </div>
 
                 <div class="card-body">
