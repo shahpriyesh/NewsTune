@@ -45,12 +45,22 @@
                             <div class="input-group-append"></div>
                         </div>
 
+
+                        {% elif field.name == "password2" %}
+
+                            <div class="input-group nt-ip">
+                            <span class="input-group-prepend" style="height: 42px;">
+                                <span class="glyphicon glyphicon-user"></span></span>
+                            <input class="form-control" id="{{ field.id_for_label }}" name="{{ field.html_name }}"
+                                placeholder="{{ field.label }}" type="PASSWORD" autocomplete="OFF"/>
+                            <div class="input-group-append"></div>
+
                         {% elif field.name != "usa" and field.name != "opinion" and field.name != "business" and field.name != "health" and field.name != "world" and field.name != "entertainment" and field.name != "style" and field.name != "travel" and field.name != "sports" %}
                         <div class="input-group nt-ip">
                             <span class="input-group-prepend" style="height: 42px;">
                                 <span class="glyphicon glyphicon-user"></span></span>
                             <input class="form-control" id="{{ field.id_for_label }}" name="{{ field.html_name }}"
-                                placeholder="{{ field.label }}" type="PASSWORD" autocomplete="OFF"/>
+                                placeholder="{{ field.label }}" type="{{ field.label }}" autocomplete="OFF"/>
                             <div class="input-group-append"></div>
 
                             {% if field.help_text %}
